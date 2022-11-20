@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta description="Sign in to be the highestbidder">
-    <title>Profile | highestbidder</title>
+    <title>Product | highestbidder</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +22,8 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-white">
-    <header class="sticky-top">
+<body>
+    <header class="sticky-top mb-5">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-4 pb-4 box-shadow-pink">
             <div class="container-fluid col-11 col-sm-10 p-0">
                 <a href="./index.html" class="navbar-brand knewave display-2">highestbidder</a>
@@ -43,12 +43,43 @@
             </div>
         </nav>
         <div class="col-10 mx-auto d-flex justify-content-end">
-            <div class="credits bg-white box-shadow-pink me-2">
+            <div class="credits bg-white box-shadow-pink">
                 <p class="fw-semibold">Credits : <span> --- </span> </p>
             </div>
         </div>
     </header>
-    <main>
+    <main class="mb-5" style="min-height: 90vh;">
+        <div class="col-10 mx-auto d-flex flex-column flex-md-row p-5 box-shadow-pink bg-white rounded">
+            <div class="col-12 col-md-6 mx-auto mb-5 mb-md-0">
+                <div class="rounded me-2">
+                    <img class="w-100 rounded mb-3" src="./images/Placeholder_view_vector.svg" alt="Placeholder image">
+                </div>
+                <div class="col-12 row row-cols-3 g-2">
+                    <img class="rounded col" src="./images/Placeholder_view_vector.svg" alt="Placeholder image">
+                    <img class="rounded col" src="./images/Placeholder_view_vector.svg" alt="Placeholder image">
+                    <img class="rounded col" src="./images/Placeholder_view_vector.svg" alt="Placeholder image">
+                </div>
+            </div>
+            <div class="col-12 col-md-5 d-flex flex-column justify-content-center col mx-auto">
+                <div class="mb-4">
+                    <h2 class="mb-2">Product name and link long name </h2>
+                    <p class="m-1"><strong>344 credits</strong></p>
+                    <p class="text-success m-1"><strong>00:00:00</strong></p>
+                </div>
+                <p>Description of the product listed blablablablaballalaablb</p>
+                <div class="d-flex mb-5">
+                    <img src="./images/profile-img.jpg" alt="Profile picture" style="width: 50px;">
+                    <div class="ms-2">
+                        <p class="mb-0">Listed by</p>
+                        <p class="mb-0"><strong>@marthe_b</strong></p>
+                    </div>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <input type="text" class="form-control bg-light border-0 mb-3" placeholder="Place a bid">
+                    <button type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 col-xl-6">Place bid</button>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="bg-dark d-flex flex-column col-12">
         <div class="d-flex justify-content-center mb-4 pt-5">
