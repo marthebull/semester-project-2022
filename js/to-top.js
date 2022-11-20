@@ -1,4 +1,4 @@
-let toTopBtn = document.getElementById("btn-back-to-top");
+const toTopBtn = document.getElementById("btn-back-to-top");
 
 toTopBtn.addEventListener("click", backToTop);
 
@@ -7,4 +7,5 @@ function backToTop() {
   document.documentElement.scrollTop = 0;
 }
 
-export default backToTop();
+
+export { toTopBtn, backToTop };
