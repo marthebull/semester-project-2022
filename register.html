@@ -14,6 +14,7 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e6e3ac140.js" crossorigin="anonymous"></script>
     <script defer type="module" src="./js/to-top.js"></script>
+    <script defer type="module" src="./js/register.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
@@ -47,13 +48,18 @@
         <div class="col-10 mx-auto d-flex flex-column flex-md-row pt-5">
             <div
                 class="bg-white col-12 col-md-6 p-5 d-flex flex-column justify-content-center box-shadow-pink rounded col mx-auto mx-md-0 mb-5">
-                <h1 class="smaller text-center mb-5 pt-4">Register to become a <span class="knewave">highestbidder</span></h1>
-                <form action="" class="d-flex flex-column justify-content-center pt-3">
-                    <input type="text" class="form-control bg-light border-0 mb-3" placeholder="Username">
-                    <input type="text" class="form-control bg-light border-0 mb-3" placeholder="Email">
-                    <input type="password" class="form-control bg-light border-0 mb-3" placeholder="Password">
-                    <input type="text" class="form-control bg-light border-0 mb-5" placeholder="Avatar URL">
-                    <button type="submit" class="btn btn-primary text-nowrap text-white mx-auto text-center mb-4 col-xl-6">Create account</button>
+                <h1 class="smaller text-center mb-4 pt-4">Register to become a <span class="knewave">highestbidder</span></h1>
+                <p id="error-msg" class="text-center text-danger mb-0"></p>
+                <form id="reg-form" action="" class="d-flex flex-column justify-content-center">
+                    <p class="text-danger justify-content-start" id="reg-username-msg"></p>
+                    <input id="reg-username" type="text" class="form-control bg-light border-0 mb-3" placeholder="Username">
+                    <p class="text-danger justify-content-start" id="reg-email-msg"></p>
+                    <input id="reg-email" type="text" class="form-control bg-light border-0 mb-3" placeholder="Email">
+                    <p class="text-danger justify-content-start" id="reg-password-msg"></p>
+                    <input id="reg-password" type="password" class="form-control bg-light border-0 mb-3" placeholder="Password">
+                    <p class="text-danger justify-content-start" id="reg-avatar-msg"></p>
+                    <input id="reg-avatar" type="text" class="form-control bg-light border-0 mb-5" placeholder="Avatar URL">
+                    <button id="reg-btn" type="submit" class="btn btn-primary text-nowrap text-white mx-auto text-center mb-4 col-xl-6">Create account</button>
                 </form>
                 <p class="text-center">or</p>
                 <p class="text-center"><a class="text-black fw-semibold" href="login.html">sign in here.</a></p>
