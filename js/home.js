@@ -72,7 +72,7 @@ const writeListings = (list, outElement) => {
     newDivs += `
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
-                    <img src="${content.media}" class="card-img-top card-img" alt="Product"/>
+                    <img src="${content.media[0]}" class="card-img-top card-img" alt="Product"/>
                     <div class="card-body p-4">
                         <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">${content.title}</a></h5>
                         <div class="d-flex justify-content-between pt-3">
