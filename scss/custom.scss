@@ -41,6 +41,21 @@ $btn-font-weight: 600;
     margin-bottom: 0;
 }
 
+.expired {
+    color: #D08A58;
+}
+
+.not-expired {
+    color: #838E00;
+}
+
+.card-img {
+    width: 100%px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
 
 
 @import"../node_modules/bootstrap/scss/bootstrap";

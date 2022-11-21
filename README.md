@@ -37,3 +37,6 @@ I will be using bootstrap as CSS framework for this project.
 Sources:
 
 Navbar code for bootstrap: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-navbar.php
+
+Countdown for timer: https://www.w3schools.com/howto/howto_js_countdown.asp 
+
