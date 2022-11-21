@@ -31,8 +31,9 @@
 
 .card-img {
   width: 100% px;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
+  border-radius: 0;
 }
 
 /*!

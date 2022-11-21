@@ -63,7 +63,6 @@ const writeListings = (list, outElement) => {
       timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
       timer.classList.add("not-expired");
       
-
       // If the count down is finished, write some text
       if (distance < 0) {
         clearInterval(deadline);
