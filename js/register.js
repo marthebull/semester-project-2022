@@ -1,11 +1,11 @@
 
-// getting all elements needed to register 
+
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const regEndpoint = "/auction/auth/register";
 const registerUrl = `${API_BASE_URL}${regEndpoint}`;
 
 
-// Register end point: /auction/auth/register
+// Getting all elements needed to register 
 const form = document.getElementById("reg-form");
 const usernameInput = document.getElementById("reg-username");
 const emailInput = document.getElementById("reg-email");
@@ -78,7 +78,7 @@ function validateForm(e) {
 }
 
 
-// ------------- Registers user
+// Prosesses user input and registers user
 registerBtn.addEventListener("click", validateAndProcess);
 
 function validateAndProcess(event) {
@@ -87,11 +87,13 @@ function validateAndProcess(event) {
   const username = usernameInput.value.trim();
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
+  const avatar = avatarInput.value.trim();
 
   const userToRegister = {
     name: username,
     email: email,
     password: password,
+    avatar: avatar,
   };
   registerUSer(registerUrl, userToRegister);
 }
@@ -99,7 +101,6 @@ function validateAndProcess(event) {
 async function registerUSer(url, userData) {
   console.log(url, userData);
   try {
-    // caller api
     const postData = {
       method: "POST",
       headers: {
@@ -108,14 +109,13 @@ async function registerUSer(url, userData) {
       body: JSON.stringify(userData),
     };
 
-
     const response = await fetch(registerUrl, postData);
     console.log(response);
     const json = await response.json();
     console.log(json);
 
     if (response.status === 201) {
-      window.location = "../index.html";
+      window.location = "./index.html";
     } else if (json.errors[0].message === "Profile already exists") {
       errorMsg.innerHTML = `Profile already exists. Try to <a href="../index.html">log in</a> instead.`;
     }
