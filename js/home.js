@@ -27,7 +27,6 @@ async function getAllListings(url) {
     const listing = await response.json();
     console.log(listing);
     listingCollection = listing;
-    //console.log("Colletion:", postCollection);
     writeListings(listing, outElement);
   } catch (error) {
     console.warn(error);
@@ -46,24 +45,20 @@ const writeListings = (list, outElement) => {
   for (let content of list) {
     let date = new Date(content.endsAt);
     let deadline = setInterval(function () {
-      // Get today's date and time
+    
       let now = new Date().getTime();
 
-      // Find the distance between now and the count down date
       let distance = date - now;
 
-      // Time calculations for days, hours, minutes and seconds
       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
       let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Display the result in the element with id="demo"
       const timer = document.querySelector(".timer");
       timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
       timer.classList.add("not-expired");
       
-      // If the count down is finished, write some text
       if (distance < 0) {
         clearInterval(deadline);
         timer.innerHTML = "EXPIRED";
