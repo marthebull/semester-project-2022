@@ -6,9 +6,9 @@ import { toTopBtn, backToTop } from "./to-top.js";
   function hideOut() {
     const loggedIn = localStorage.getItem("accessToken");
     if (!loggedIn) {
-        const creditsBoxes = document.getElementsByClassName("hide-out");
-        for (var i = 0; i < creditsBoxes.length; i += 1) {
-          creditsBoxes[i].style.display = "none";
+        const hideElements = document.getElementsByClassName("hide-out");
+        for (var i = 0; i < hideElements.length; i += 1) {
+          hideElements[i].style.display = "none";
         }
     } 
   }
@@ -18,9 +18,9 @@ import { toTopBtn, backToTop } from "./to-top.js";
   function hideIn() {
     const loggedIn = localStorage.getItem("accessToken");
     if (loggedIn) {
-      const creditsBoxes = document.getElementsByClassName("hide-in");
-      for (var i = 0; i < creditsBoxes.length; i += 1) {
-        creditsBoxes[i].style.display = "none";
+      const hideElements = document.getElementsByClassName("hide-in");
+      for (var i = 0; i < hideElements.length; i += 1) {
+        hideElements[i].style.display = "none";
       }
     }
   }
