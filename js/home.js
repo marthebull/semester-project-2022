@@ -73,7 +73,6 @@ const writeListings = (list, outElement) => {
         timer.classList.add("expired");
       }
     }, 1000);*/
-    /*
 
     let date = new Date(content.endsAt).getTime();
 
@@ -102,7 +101,7 @@ const writeListings = (list, outElement) => {
         timer.classList.remove("not-expired");
         timer.classList.add("expired");
       }
-    }, 1000);*/
+    }, 1000);
 
     newDivs += `
             <div class="col pb-4">
