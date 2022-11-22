@@ -1,14 +1,13 @@
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
-const allListingsEndpoint = "/auction/listings";
+const allListingsEndpoint = "/auction/listings?_bids=true";
 const allListingsUrl = `${API_BASE_URL}${allListingsEndpoint}`;
 
 const outElement = document.getElementById("listings-feed");
+const searchBar = document.getElementById("search-bar");
 
-
-
-
-let listingCollection = [];
 //console.log(postCollection);
+
+let listingsCollection = [];
 
 async function getAllListings(url) {
   try {
@@ -24,10 +23,10 @@ async function getAllListings(url) {
 
     const response = await fetch(url, options);
     //console.log(response);
-    const listing = await response.json();
-    console.log(listing);
-    listingCollection = listing;
-    writeListings(listing, outElement);
+    const listings = await response.json();
+    console.log(listings);
+    listingsCollection = listings;
+    writeListings(listings, outElement);
   } catch (error) {
     console.warn(error);
   }
@@ -36,35 +35,75 @@ async function getAllListings(url) {
 // Gets all listings
 getAllListings(allListingsUrl);
 
-
 // Writes all listings to outElement
 const writeListings = (list, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
 
   for (let content of list) {
-    let date = new Date(content.endsAt);
-    let deadline = setInterval(function () {
-    
+    const productImg =
+      content.media.length !== 0
+        ? `${content.media[0]}`
+        : "../images/Placeholder_view_vector.svg";
+
+    /*
+
+    let date = new Date(content.endsAt).getTime();
+
+    let counter = setInterval(function () {
       let now = new Date().getTime();
 
       let distance = date - now;
 
       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       const timer = document.querySelector(".timer");
-      timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+      timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
       timer.classList.add("not-expired");
-      
+
       if (distance < 0) {
-        clearInterval(deadline);
+        clearInterval(counter);
         timer.innerHTML = "EXPIRED";
+        timer.classList.remove("not-expired");
+        timer.classList.add("expired");
       }
-    }, 1000);
-    const productImg = content.media.length !== 0 ? `${content.media[0]}` : "../images/Placeholder_view_vector.svg";
+    }, 1000);*/
+    /*
+
+    let date = new Date(content.endsAt).getTime();
+
+    let counter = setInterval(function () {
+      let now = new Date().getTime();
+
+      let distance = date - now;
+
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const timer = document.querySelector(".timer");
+
+      if (distance > 0) {
+        timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
+        timer.classList.add("not-expired");
+        //console.log(deadline);
+      } else {
+        clearInterval(counter);
+        timer.innerHTML = "EXPIRED";
+        //console.log(deadline);
+        timer.classList.remove("not-expired");
+        timer.classList.add("expired");
+      }
+    }, 1000);*/
+
     newDivs += `
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
@@ -77,8 +116,8 @@ const writeListings = (list, outElement) => {
                                 <p class="m-1"><strong>${content._count.bids}</strong></p>
                             </div>
                             <div>
-                                <p class="m-1 text-end">Deadline:</p>
-                                <p class="m-1"><strong class="timer expired">EXPIRED</strong></p>
+                                <p class="m-1 text-end">Ends in:</p>
+                                <p class="m-1"><strong class="timer"></strong></p>
                             </div>
                         </div>
                     </div>
@@ -90,4 +129,25 @@ const writeListings = (list, outElement) => {
   outElement.innerHTML = newDivs;
 };
 
+// Søk på tittel, body, tags osv
 
+searchBar.addEventListener("keyup", search);
+
+function search() {
+  const filterQuery = searchBar.value.toLowerCase();
+  console.log(filterQuery);
+
+  const filteredList = listingsCollection.filter((listing) => {
+    //console.log(listing.title);
+
+    //console.log(listingsCollection.length);
+    const listingTitle = listing.title.toLowerCase();
+
+    //console.log(postTitle, postAuthor, postBody);
+    if (listingTitle.indexOf(filterQuery) > -1) return true;
+
+    return false;
+  });
+
+  writeListings(filteredList, outElement);
+}
