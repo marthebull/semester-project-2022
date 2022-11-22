@@ -59,10 +59,10 @@ function validateAndProcess(event) {
   let media = listingMainImg.value.trim();
   //const deadline = listingDate.value.trim().getDate();
 
-  //var dateParts = listingDate.value.trim().split("-");
-  //var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-  //var endsAt = deadline.toISOString();
-  //console.log(endsAt);
+  var dateParts = listingDate.value.trim().split("-");
+  var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+  var endsAt = deadline.toISOString();
+  console.log(endsAt);
 
   //const date = new Date(listingDate.value.trim());
   //const deadline = date.toUTCString();
@@ -75,7 +75,7 @@ function validateAndProcess(event) {
     title: title,
     description: description,
     media: media,
-    endsAt: "2023-01-01T00:00:00.000Z",
+    endsAt: endsAt,
   };
 
   let submittedTitle = listingTitle.value.trim();
