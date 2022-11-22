@@ -74,19 +74,19 @@ const writeListings = (list, outElement) => {
       }
     }, 1000);*/
 
-    let date = new Date(content.endsAt).getTime();
+    const date = new Date(content.endsAt).getTime();
 
     let counter = setInterval(function () {
-      let now = new Date().getTime();
+      const now = new Date().getTime();
 
-      let distance = date - now;
+      const distance = date - now;
 
-      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor(
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       const timer = document.querySelector(".timer");
 
@@ -128,8 +128,7 @@ const writeListings = (list, outElement) => {
   outElement.innerHTML = newDivs;
 };
 
-// Søk på tittel, body, tags osv
-
+// Search by title, description, tags
 searchBar.addEventListener("keyup", search);
 
 function search() {
