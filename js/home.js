@@ -45,7 +45,16 @@ const writeListings = (list, outElement) => {
     const productImg =
       content.media.length !== 0
         ? `${content.media[0]}`
-        : "../images/Placeholder_view_vector.svg";
+        : [
+            "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
+          ];
+
+    const profileImg =
+      content.seller.avatar !== ""
+        ? content.seller.avatar
+        : [
+            "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg",
+          ];
 
     /*
 
@@ -111,7 +120,7 @@ const writeListings = (list, outElement) => {
                     <div class="card-body p-4">
                         <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">${content.title}</a></h5>
                         <a href="#" class="d-flex mb-3 pt-2 text-black text-decoration-none">
-                        <img class="rounded-circle profile-img-thumbnail" src="${content.seller.avatar}" alt="">
+                        <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="">
                         <div class="ms-2">
                             <p class="mb-0">Listed by</p>
                             <p class="mb-0"><strong>@${content.seller.name}</strong></p>

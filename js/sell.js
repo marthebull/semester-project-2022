@@ -41,7 +41,8 @@ async function listIt(url, data) {
     const response = await fetch(url, options);
     //console.log(response);
     const answer = await response.json();
-    if (answer) {
+    console.log(answer);
+    if (answer.id) {
       previewCont.innerHTML = "";
 
       previewCont.innerHTML = `
@@ -64,19 +65,25 @@ function validateAndProcess(event) {
   const title = listingTitle.value.trim();
   const description = listingDescription.value.trim();
   let media = [`${listingMainImg.value.trim()}`];
-  //const deadline = listingDate.value.trim().getDate();
 
+  if (media.value === []) {
+    media = [
+      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
+    ];
+  }
+  //const deadline = listingDate.value.trim().getDate();
+  /*
   var dateParts = listingDate.value.trim().split("-");
   var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
   var endsAt = deadline.toISOString();
-  console.log(endsAt);
+  console.log(endsAt);*/
+
+  const bidEnds = listingDate.value.trim();
+  console.log(bidEnds);
+  const endsAt = `${bidEnds}:00.000Z`;
 
   //const date = new Date(listingDate.value.trim());
   //const deadline = date.toUTCString();
-
-  if (media.value === [])
-    media =
-      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg";
 
   let listingData = {
     title: title,

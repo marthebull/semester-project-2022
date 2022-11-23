@@ -1,11 +1,8 @@
-
-
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const regEndpoint = "/auction/auth/register";
 const registerUrl = `${API_BASE_URL}${regEndpoint}`;
 
-
-// Getting all elements needed to register 
+// Getting all elements needed to register
 const form = document.getElementById("reg-form");
 const usernameInput = document.getElementById("reg-username");
 const emailInput = document.getElementById("reg-email");
@@ -18,7 +15,6 @@ const usernameMsg = document.getElementById("reg-username-msg");
 const emailMsg = document.getElementById("reg-email-msg");
 const passwordMsg = document.getElementById("reg-password-msg");
 const avatarMsg = document.getElementById("reg-avatar-msg");
-
 
 // Form validation
 registerBtn.addEventListener("click", validateForm);
@@ -67,16 +63,14 @@ function validateForm(e) {
   avatarMsg.innerHTML = "";
   let avatarPattern = /\.(jpeg|jpg|gif|png|svg)$/;
   if (!avatarPattern.test(submittedAvatar)) {
-    avatarMsg.innerHTML =
-      "Invalid image URL";
+    avatarMsg.innerHTML = "Invalid image URL";
   }
-  if (submittedAvatar === "") {
+  if (submittedAvatar.value === null) {
     avatarInput.innerHTML =
       "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
-      //console.log(`Avatar URL: https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg`);
+    //console.log(`Avatar URL: https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg`);
   }
 }
-
 
 // Prosesses user input and registers user
 registerBtn.addEventListener("click", validateAndProcess);
