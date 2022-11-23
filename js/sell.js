@@ -45,9 +45,9 @@ async function listIt(url, data) {
       previewCont.innerHTML = "";
 
       previewCont.innerHTML = `
-        <h1 class="text-center mx-auto pt-4 knewave text-success">Its been listed!</h1>
+        <h1 class="text-center mx-auto pt-4 knewave text-primary">Its been listed!</h1>
         `;
-        setTimeout(function () {
+      setTimeout(function () {
         window.location.href = "../home.html";
       }, 2000);
     }
@@ -104,7 +104,6 @@ function validateAndProcess(event) {
   listIt(sellUrl, listingData);
 }
 
-
 // show preview
 listingTitle.addEventListener("keyup", preview);
 listingMainImg.addEventListener("keyup", preview);
@@ -126,11 +125,11 @@ async function preview() {
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Bids:</p>
-                                <p class="m-1"><strong></strong></p>
+                                <p class="m-1"><strong>0</strong></p>
                             </div>
                             <div>
-                                <p class="m-1">Deadline:</p>
-                                <p class="text-success m-1"><strong>00:00:00</strong></p>
+                                <p class="m-1 text-end">Deadline:</p>
+                                <p class="text-success m-1"><strong>00d 00h 00m 00s</strong></p>
                             </div>
                         </div>
                     </div>
