@@ -1,5 +1,5 @@
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
-const allListingsEndpoint = "/auction/listings?_bids=true";
+const allListingsEndpoint = "/auction/listings?_seller=true&_bids=true";
 const allListingsUrl = `${API_BASE_URL}${allListingsEndpoint}`;
 
 const outElement = document.getElementById("listings-feed");
@@ -106,9 +106,16 @@ const writeListings = (list, outElement) => {
     newDivs += `
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
-                    <img src="${productImg}" class="card-img-top card-img-size" alt="Product"/>
+                    <img src="${productImg}" class="card-img-top card-img-size" alt="Product">
                     <div class="card-body p-4">
                         <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">${content.title}</a></h5>
+                        <a href="#" class="d-flex mb-3 pt-2 text-black text-decoration-none">
+                        <img class="rounded-circle profile-img-thumbnail" src="${content.seller.avatar}" alt="">
+                        <div class="ms-2">
+                            <p class="mb-0">Listed by</p>
+                            <p class="mb-0"><strong>@${content.seller.name}</strong></p>
+                        </div>
+                    </a>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Bids:</p>
@@ -140,9 +147,11 @@ function search() {
 
     //console.log(listingsCollection.length);
     const listingTitle = listing.title.toLowerCase();
+    const listingName = listing.seller.name.toLowerCase();
 
     //console.log(postTitle, postAuthor, postBody);
     if (listingTitle.indexOf(filterQuery) > -1) return true;
+    if (listingName.indexOf(filterQuery) > -1) return true;
 
     return false;
   });

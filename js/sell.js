@@ -41,8 +41,15 @@ async function listIt(url, data) {
     const response = await fetch(url, options);
     //console.log(response);
     const answer = await response.json();
-    if (response.status === 200) {
-      successNewListing();
+    if (answer) {
+      previewCont.innerHTML = "";
+
+      previewCont.innerHTML = `
+        <h1 class="text-center mx-auto pt-4 knewave text-success">Its been listed!</h1>
+        `;
+        setTimeout(function () {
+        window.location.href = "../home.html";
+      }, 2000);
     }
     console.log(answer);
   } catch (error) {
@@ -97,17 +104,6 @@ function validateAndProcess(event) {
   listIt(sellUrl, listingData);
 }
 
-// Success message if successfully listed
-function successNewListing() {
-  previewCont.innerHTML = "";
-
-  previewCont.innerHTML = `
-    <h1 class="text-center mx-auto pt-4 knewave text-primary">Its been listed!</h1>
-    `;
-  setTimeout(function () {
-    window.location.href = "../home.html";
-  }, 2000);
-}
 
 // show preview
 listingTitle.addEventListener("keyup", preview);
@@ -116,6 +112,7 @@ listingMainImg.addEventListener("keyup", preview);
 async function preview() {
   previewCont.innerHTML = "";
   previewCont.innerHTML = `
+                <div class="card border-0 box-shadow-pink">
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
                     <img id="preview-img" src="${
                       listingMainImg.value !== ""
@@ -137,5 +134,6 @@ async function preview() {
                             </div>
                         </div>
                     </div>
+                </div>
   `;
 }
