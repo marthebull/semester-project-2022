@@ -56,7 +56,7 @@ function validateAndProcess(event) {
   event.preventDefault();
   const title = listingTitle.value.trim();
   const description = listingDescription.value.trim();
-  let media = listingMainImg.value.trim();
+  let media = [`${listingMainImg.value.trim()}`];
   //const deadline = listingDate.value.trim().getDate();
 
   var dateParts = listingDate.value.trim().split("-");
@@ -67,7 +67,7 @@ function validateAndProcess(event) {
   //const date = new Date(listingDate.value.trim());
   //const deadline = date.toUTCString();
 
-  if (media === "")
+  if (media.value === [])
     media =
       "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg";
 
