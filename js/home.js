@@ -1,5 +1,6 @@
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
-const allListingsEndpoint = "/auction/listings?_seller=true&_bids=true";
+const allListingsEndpoint =
+  "/auction/listings?_seller=true&_bids=true&sort=created&sortOrder=desc";
 const allListingsUrl = `${API_BASE_URL}${allListingsEndpoint}`;
 
 const outElement = document.getElementById("listings-feed");
