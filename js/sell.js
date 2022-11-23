@@ -118,8 +118,8 @@ async function preview() {
   previewCont.innerHTML = `
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
                     <img id="preview-img" src="${
-                      listingMainImg.value != ""
-                        ? listingMainImg
+                      listingMainImg.value !== ""
+                        ? listingMainImg.value
                         : "../images/Placeholder_view_vector.svg"
                     }" class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
