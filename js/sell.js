@@ -20,7 +20,7 @@ const listingDescriptionMsg = document.getElementById(
 const listingMainImgMsg = document.getElementById("listing-main-img-msg");
 
 // Preview elements
-const previewCont = document.getElementById("preview-cont");
+let previewCont = document.getElementById("preview-cont");
 const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
 
@@ -107,4 +107,35 @@ function successNewListing() {
   setTimeout(function () {
     window.location.href = "../home.html";
   }, 2000);
+}
+
+// show preview
+listingTitle.addEventListener("keyup", preview);
+listingMainImg.addEventListener("keyup", preview);
+
+async function preview() {
+  previewCont.innerHTML = "";
+  previewCont.innerHTML = `
+                    <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
+                    <img id="preview-img" src="${
+                      listingMainImg.value != ""
+                        ? listingMainImg
+                        : "../images/Placeholder_view_vector.svg"
+                    }" class="card-img-top card-img-size" alt="Product picture placeholder"/>
+                    <div class="card-body p-4">
+                        <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
+                          listingTitle.value
+                        }</a></h5>
+                        <div class="d-flex justify-content-between pt-3">
+                            <div>
+                                <p class="m-1">Bids:</p>
+                                <p class="m-1"><strong></strong></p>
+                            </div>
+                            <div>
+                                <p class="m-1">Deadline:</p>
+                                <p class="text-success m-1"><strong>00:00:00</strong></p>
+                            </div>
+                        </div>
+                    </div>
+  `;
 }
