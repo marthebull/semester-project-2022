@@ -24,10 +24,22 @@ let previewCont = document.getElementById("preview-cont");
 const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
 
+// Checking if user is logged in
+function isLoggedin() {
+  const accessToken = localStorage.getItem("accessToken");
+  if (!accessToken) {
+    alert("Please sign in to list something.");
+    window.location.href = "../index.html";
+  }
+}
+
+isLoggedin();
+
 // Creates new listing
 async function listIt(url, data) {
   try {
     const accessToken = localStorage.getItem("accessToken");
+
     //console.log(accessToken);
     const options = {
       method: "POST",

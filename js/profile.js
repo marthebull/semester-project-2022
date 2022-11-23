@@ -13,6 +13,10 @@ const profileInfoOutput = document.getElementById("profile-info");
 async function getListings(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      alert("Please sign in to see profile.");
+      window.location.href = "../index.html";
+    }
     const options = {
       method: "GET",
       headers: {
@@ -150,6 +154,9 @@ const writeListings = (list, outElement) => {
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      window.location.href = "../index.html";
+    }
     const options = {
       method: "GET",
       headers: {
