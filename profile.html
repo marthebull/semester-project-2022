@@ -48,113 +48,12 @@
     </header>
     <main class="mb-5">
         <div class="col-10 mx-auto d-flex flex-column flex-lg-row pt-5">
-            <div class="bg-white col-12 col-lg-3 p-4 d-flex flex-column box-shadow-pink rounded col mx-auto mx-md-0 mb-5" style="max-height: 500px;">
-                <p class="text-end text-primary">Edit</p>
-                <img id="profile-img" class="mx-auto rounded-circle" src="images/profile-img.jpg" alt="Profile picture" style="max-width: 180px;">
-                <h1 class="text-center mb-5 pt-4 knewave smaller">@marthe_b</h1>
-                <p class="text-center">Credits: 3452</p>
-                <p class="text-center">Active listings: 12</p>
-                <p class="text-center">Sold items: 4</p>
+            <div id="profile-info" class="bg-white col-12 col-lg-3 p-4 d-flex flex-column box-shadow-pink rounded col mx-auto mx-md-0 mb-5" style="max-height: 500px;">
             </div>
             <div class="col-12 col-lg-9 ps-md-5">
-                <h1 class="knewave mb-5">ACTIVE listings</h1>
-                <div class="col-12 row row-cols-1 row-cols-md-2 g-4 gx-md-5">
-                    <div class="col pb-4">
-                        <div class="card border-0 box-shadow-pink">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Product" />
-                            <div class="card-body p-4">
-                                <h5 class="card-title"><a href="product.html"
-                                        class="text-black text-decoration-none stretched-link">This is
-                                        a product with iamge</a></h5>
-                                <div class="d-flex justify-content-between pt-3">
-                                    <div>
-                                        <p class="m-1">Credits:</p>
-                                        <p class="m-1"><strong>344</strong></p>
-                                    </div>
-                                    <div>
-                                        <p class="m-1">Deadline:</p>
-                                        <p class="text-success m-1"><strong>00:00:00</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-4">
-                        <div class="card border-0 box-shadow-pink">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Product" />
-                            <div class="card-body p-4">
-                                <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">This is
-                                        a product with iamge</a></h5>
-                                <div class="d-flex justify-content-between pt-3">
-                                    <div>
-                                        <p class="m-1">Credits:</p>
-                                        <p class="m-1"><strong>344</strong></p>
-                                    </div>
-                                    <div>
-                                        <p class="m-1">Deadline:</p>
-                                        <p class="text-success m-1"><strong>00:00:00</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-4">
-                        <div class="card border-0 box-shadow-pink">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Product" />
-                            <div class="card-body p-4">
-                                <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">This is
-                                        a product with iamge</a></h5>
-                                <div class="d-flex justify-content-between pt-3">
-                                    <div>
-                                        <p class="m-1">Credits:</p>
-                                        <p class="m-1"><strong>344</strong></p>
-                                    </div>
-                                    <div>
-                                        <p class="m-1">Deadline:</p>
-                                        <p class="text-success m-1"><strong>00:00:00</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-4">
-                        <div class="card border-0 box-shadow-pink">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Product" />
-                            <div class="card-body p-4">
-                                <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">This is
-                                        a product with iamge</a></h5>
-                                <div class="d-flex justify-content-between pt-3">
-                                    <div>
-                                        <p class="m-1">Credits:</p>
-                                        <p class="m-1"><strong>344</strong></p>
-                                    </div>
-                                    <div>
-                                        <p class="m-1">Deadline:</p>
-                                        <p class="text-success m-1"><strong>00:00:00</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-4">
-                        <div class="card border-0 box-shadow-pink">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Product" />
-                            <div class="card-body p-4">
-                                <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">This is
-                                        a product with iamge</a></h5>
-                                <div class="d-flex justify-content-between pt-3">
-                                    <div>
-                                        <p class="m-1">Credits:</p>
-                                        <p class="m-1"><strong>344</strong></p>
-                                    </div>
-                                    <div>
-                                        <p class="m-1">Deadline:</p>
-                                        <p class="text-success m-1"><strong>00:00:00</strong></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <h1 class="knewave mb-5">YOUR listings</h1>
+                <div id="listings-output" class="col-12 row row-cols-1 row-cols-md-2 g-4 gx-md-5">
+                    <img class="mx-auto pt-5" src="./images/loader.gif" alt="Loading content" style="width:100px;">
                 </div>
 
             </div>
