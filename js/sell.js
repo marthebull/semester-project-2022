@@ -116,6 +116,9 @@ listingTitle.addEventListener("keyup", preview);
 listingMainImg.addEventListener("keyup", preview);
 
 async function preview() {
+  // teste img først og gi den et navn, sende den inn i preview boks og
+  //sjekke om den er noe eller ikke, enten sette inn den url eller placeholder
+
   previewCont.innerHTML = "";
   previewCont.innerHTML = `
                 <div class="card border-0 box-shadow-pink">
@@ -123,7 +126,9 @@ async function preview() {
                     <img id="preview-img" src="${
                       listingMainImg.value !== ""
                         ? listingMainImg.value
-                        : "../images/Placeholder_view_vector.svg"
+                        : [
+                            "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
+                          ]
                     }" class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
@@ -135,7 +140,7 @@ async function preview() {
                                 <p class="m-1"><strong>0</strong></p>
                             </div>
                             <div>
-                                <p class="m-1 text-end">Deadline:</p>
+                                <p class="m-1 text-end">Ends at:</p>
                                 <p class="text-success m-1"><strong>00d 00h 00m 00s</strong></p>
                             </div>
                         </div>
