@@ -87,12 +87,7 @@ const writeListings = (list, outElement) => {
                     <img src="${productImg}" class="card-img-top card-img-size" alt="Product">
                     <div class="card-body p-4">
                         <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">${listing.title}</a></h5>
-                        <a href="#" class="d-flex mb-3 pt-2 text-black text-decoration-none">
-                        <div class="ms-2">
-                            <p class="mb-0">Listed by</p>
-                            <p class="mb-0"><strong>you</strong></p>
-                        </div>
-                    </a>
+                        <p class="m-1">${listing.description}</p>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Bids:</p>
