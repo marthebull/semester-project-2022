@@ -4,7 +4,7 @@ const sellUrl = `${API_BASE_URL}${sellEndpoint}`;
 
 // Input fields and submit button
 const listingTitle = document.getElementById("listing-title");
-//const listingDate = document.getElementById("listing-date");
+const listingDate = document.getElementById("listing-date");
 const listingTime = document.getElementById("listing-time");
 const listingDescription = document.getElementById("listing-description");
 const listingMainImg = document.getElementById("listing-main-img");
@@ -126,11 +126,12 @@ function settingDate() {
 
   if (month < 10) month = "0" + month;
   if (day < 10) day = "0" + day;
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
 
   var today = year + "-" + month + "-" + day + "T" + hours + ":" + minutes;
-  const listingDate = document.getElementById("listing-date");
   listingDate.value = today;
-  console.log(today);
+  console.log(listingDate.value);
 }
 settingDate();
 
