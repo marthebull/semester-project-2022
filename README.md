@@ -27,6 +27,7 @@ HUSK!!
 
 - minimize css for production code
 - hva må en installere på en ny maskin for at det skal funke der?
+- lage moduler?? 
 
 ---
 
