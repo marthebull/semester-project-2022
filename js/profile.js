@@ -60,64 +60,26 @@ const writeListings = (list, outElement) => {
         : [
             "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
           ];
+    console.log(listing);
 
-    /*
+    // sets time
+    const date = new Date(listing.endsAt).getTime();
+    const now = new Date().getTime();
+    const distance = date - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    let date = new Date(content.endsAt).getTime();
+    let timeLeft = "";
 
-    let counter = setInterval(function () {
-      let now = new Date().getTime();
-
-      let distance = date - now;
-
-      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      const timer = document.querySelector(".timer");
-      timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
-      timer.classList.add("not-expired");
-
-      if (distance < 0) {
-        clearInterval(counter);
-        timer.innerHTML = "EXPIRED";
-        timer.classList.remove("not-expired");
-        timer.classList.add("expired");
-      }
-    }, 1000);*/
-    /*
-
-    const date = new Date(content.endsAt).getTime();
-
-    let counter = setInterval(function () {
-      const now = new Date().getTime();
-
-      const distance = date - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      const timer = document.querySelector(".timer");
-
-      if (distance > 0) {
-        timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
-        timer.classList.add("not-expired");
-        //console.log(deadline);
-      } else {
-        clearInterval(counter);
-        timer.innerHTML = "EXPIRED";
-        //console.log(deadline);
-        timer.classList.remove("not-expired");
-        timer.classList.add("expired");
-      }
-    }, 1000);*/
+    if (distance > 0) {
+      timeLeft = `${days}d ${hours}h ${minutes}m`;
+    } else {
+      timeLeft = "EXPIRED";
+    }
 
     newDivs += `
             <div class="col pb-4">
@@ -138,7 +100,7 @@ const writeListings = (list, outElement) => {
                             </div>
                             <div>
                                 <p class="m-1 text-end">Ends in:</p>
-                                <p class="m-1"><strong class="timer">00:00:00</strong></p>
+                                <p class="m-1"><strong class="timer">${timeLeft}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -148,6 +110,24 @@ const writeListings = (list, outElement) => {
   }
 
   outElement.innerHTML = newDivs;
+
+  // Canges color og expired og active listings
+  const timer = document.getElementsByClassName("timer");
+
+  for (let i = 0; i < timer.length; i++) {
+    let content = timer[i].innerHTML;
+    //console.log(content);
+
+    let thisTime = content;
+    if (thisTime !== "EXPIRED") {
+      timer[i].classList.add("not-expired");
+      //console.log(deadline);
+    } else {
+      //console.log(deadline);
+      timer[i].classList.remove("not-expired");
+      timer[i].classList.add("expired");
+    }
+  }
 };
 
 // getting profile info

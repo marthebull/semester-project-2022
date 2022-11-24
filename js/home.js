@@ -56,34 +56,7 @@ const writeListings = (list, outElement) => {
           ]
         : content.seller.avatar;
 
-    /*
-
-    let date = new Date(content.endsAt).getTime();
-
-    let counter = setInterval(function () {
-      let now = new Date().getTime();
-
-      let distance = date - now;
-
-      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      const timer = document.querySelector(".timer");
-      timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
-      timer.classList.add("not-expired");
-
-      if (distance < 0) {
-        clearInterval(counter);
-        timer.innerHTML = "EXPIRED";
-        timer.classList.remove("not-expired");
-        timer.classList.add("expired");
-      }
-    }, 1000);*/
-
+    // sets time
     const date = new Date(content.endsAt).getTime();
     const now = new Date().getTime();
     const distance = date - now;
@@ -92,19 +65,14 @@ const writeListings = (list, outElement) => {
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     let timeLeft = "";
 
     if (distance > 0) {
-      timeLeft = `${days}d ${hours}h ${minutes}m ${seconds}s `;
-      //timer.classList.add("not-expired");
-      //console.log(deadline);
+      timeLeft = `${days}d ${hours}h ${minutes}m`;
     } else {
       timeLeft = "EXPIRED";
-      //console.log(deadline);
-      //timer.classList.remove("not-expired");
-      //timer.classList.add("expired");
     }
 
     newDivs += `
@@ -138,6 +106,7 @@ const writeListings = (list, outElement) => {
 
   outElement.innerHTML = newDivs;
 
+  // Canges color og expired og active listings
   const timer = document.getElementsByClassName("timer");
 
   for (let i = 0; i < timer.length; i++) {
