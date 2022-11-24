@@ -5,10 +5,16 @@ const profileUrl = `${API_BASE_URL}${profileEndpoint}`;
 
 const profileListingsUrl = `${API_BASE_URL}/auction/profiles/${userName}/listings`;
 
+const updateAvatarUrl = `${API_BASE_URL}/auction/profiles/${userName}/media`;
+
 // getting elements
 const listingsOutput = document.getElementById("listings-output");
 const profileImg = document.getElementsByClassName("profile-img");
 const profileInfoOutput = document.getElementById("profile-info");
+
+const updateAvatarMsg = document.getElementById("update-avatar-msg");
+const newAvatarInput = document.getElementById("new-avatar");
+const saveNewAvatarBtn = document.getElementById("save-new-avatar");
 
 async function getListings(url) {
   try {
@@ -38,17 +44,7 @@ async function getListings(url) {
 
 getListings(profileListingsUrl);
 
-// Henter alle egne poster
-/*
-const profileImg =
-  profile.avatar.value !== ""
-    ? profile.avatar.value
-    : [
-        "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg",
-      ];
-*/
-
-// Writes all listings to outElement
+// Writes all listings by this profile to outElement
 const writeListings = (list, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
@@ -86,7 +82,7 @@ const writeListings = (list, outElement) => {
                 <div class="card h-100 border-0 box-shadow-pink">
                     <img src="${productImg}" class="card-img-top card-img-size" alt="Product">
                     <div class="card-body p-4">
-                        <h5 class="card-title"><a href="product.html" class="text-black text-decoration-none stretched-link">${listing.title}</a></h5>
+                        <h5 class="card-title"><a href="product.html?id=${listing.id}" class="text-black text-decoration-none stretched-link">${listing.title}</a></h5>
                         <p class="m-1">${listing.description}</p>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
@@ -162,11 +158,59 @@ const writeProfileInfo = (profile, outElement) => {
       ? `${profile.avatar}`
       : "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
   outElement.innerHTML = `
-            <p class="text-end text-primary">Edit</p>
+            
             <img class="mx-auto rounded-circle profile-img" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
             <h1 class="text-center mb-5 pt-4 knewave smaller">@${profile.name}</h1>
             <p class="text-center">Credits: ${profile.credits}</p>
             <p class="text-center">Active listings: ${profile.listings.length}</p>
-            <p class="text-center">Wins: ${profile.wins.length}</p>
+            <p class="text-center mb-4">Wins: ${profile.wins.length}</p>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#avatar-modal" class="btn btn-primary text-white">Change avatar</button>
             `;
 };
+
+// Updateing avatar
+
+async function updateAvatar(url, data) {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    //console.log(accessToken);
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    };
+    //console.log(url, data, options);
+    // opp i api
+    const response = await fetch(url, options);
+    //console.log(response);
+    const answer = await response.json();
+    console.log(answer);
+    if (answer.statusCode) {
+      updateAvatarMsg.innerHTML =
+        "Invalid image URL, your url should match this pattern : https://url.com/image.jpg";
+    }
+
+    if (answer.name) {
+      window.location.reload();
+    }
+
+    //console.log(answer);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+saveNewAvatarBtn.addEventListener("click", newAvatar);
+function newAvatar(event) {
+  event.preventDefault();
+  const avatarUrl = newAvatarInput.value.trim();
+
+  let postData = {
+    avatar: avatarUrl,
+  };
+
+  updateAvatar(updateAvatarUrl, postData);
+}
