@@ -50,11 +50,11 @@ const writeListings = (list, outElement) => {
           ];
 
     const profileImg =
-      content.seller.avatar !== ""
-        ? content.seller.avatar
-        : [
+      content.seller.avatar === "" || content.seller.avatar === null
+        ? [
             "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg",
-          ];
+          ]
+        : content.seller.avatar;
 
     /*
 
@@ -85,33 +85,28 @@ const writeListings = (list, outElement) => {
     }, 1000);*/
 
     const date = new Date(content.endsAt).getTime();
+    const now = new Date().getTime();
+    const distance = date - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const timer = document.querySelector(".timer");
 
-    let counter = setInterval(function () {
-      const now = new Date().getTime();
+    let timeLeft = "";
 
-      const distance = date - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      const timer = document.querySelector(".timer");
-
-      if (distance > 0) {
-        timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
-        timer.classList.add("not-expired");
-        //console.log(deadline);
-      } else {
-        clearInterval(counter);
-        timer.innerHTML = "EXPIRED";
-        //console.log(deadline);
-        timer.classList.remove("not-expired");
-        timer.classList.add("expired");
-      }
-    }, 1000);
+    if (distance > 0) {
+      timeLeft = `${days}d ${hours}h ${minutes}m ${seconds}s `;
+      //timer.classList.add("not-expired");
+      //console.log(deadline);
+    } else {
+      timeLeft = "EXPIRED";
+      //console.log(deadline);
+      //timer.classList.remove("not-expired");
+      //timer.classList.add("expired");
+    }
 
     newDivs += `
             <div class="col pb-4">
@@ -133,7 +128,7 @@ const writeListings = (list, outElement) => {
                             </div>
                             <div>
                                 <p class="m-1 text-end">Ends in:</p>
-                                <p class="m-1"><strong class="timer"></strong></p>
+                                <p class="m-1"><strong class="timer">${timeLeft}</strong></p>
                             </div>
                         </div>
                     </div>
