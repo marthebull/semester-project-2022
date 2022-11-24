@@ -93,7 +93,6 @@ const writeListings = (list, outElement) => {
     );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    const timer = document.querySelector(".timer");
 
     let timeLeft = "";
 
@@ -138,6 +137,23 @@ const writeListings = (list, outElement) => {
   }
 
   outElement.innerHTML = newDivs;
+
+  const timer = document.getElementsByClassName("timer");
+
+  for (let i = 0; i < timer.length; i++) {
+    let content = timer[i].innerHTML;
+    //console.log(content);
+
+    let thisTime = content;
+    if (thisTime !== "EXPIRED") {
+      timer[i].classList.add("not-expired");
+      //console.log(deadline);
+    } else {
+      //console.log(deadline);
+      timer[i].classList.remove("not-expired");
+      timer[i].classList.add("expired");
+    }
+  }
 };
 
 // Search by title, description, tags
