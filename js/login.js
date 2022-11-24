@@ -1,18 +1,16 @@
-
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const loginEndpoint = "/auction/auth/login";
 const loginUrl = `${API_BASE_URL}${loginEndpoint}`;
 
-
-// Getting all elements needed to login 
+// Getting all elements needed to login
 const form = document.getElementById("login-form");
 const emailInput = document.getElementById("login-email");
 const passwordInput = document.getElementById("login-password");
 const loginBtn = document.getElementById("login-submit");
 
+const formMsg = document.getElementById("login-form-msg");
 const emailMsg = document.getElementById("login-email-msg");
 const passwordMsg = document.getElementById("login-password-msg");
-
 
 // Validating login input
 loginBtn.addEventListener("click", validateForm);
@@ -31,7 +29,12 @@ function validateForm(e) {
   if (submittedEmail.length < 11) {
     emailMsg.innerHTML = "Please enter a valid email.";
   }
-  if (!(submittedEmail.includes("@noroff.no") || submittedEmail.includes("@stud.noroff.no"))) {
+  if (
+    !(
+      submittedEmail.includes("@noroff.no") ||
+      submittedEmail.includes("@stud.noroff.no")
+    )
+  ) {
     emailMsg.innerHTML = "Email must include @stud.noroff.no or @noroff.no.";
   }
 
@@ -43,7 +46,6 @@ function validateForm(e) {
     passwordMsg.innerHTML = "Password must be at least 8 characters long.";
   }
 }
-
 
 // Prosesses inputs
 loginBtn.addEventListener("click", validateAndProcess);
@@ -59,7 +61,6 @@ function validateAndProcess(event) {
   loginUser(loginUrl, data);
 }
 
-
 // Logges in user
 async function loginUser(url, data) {
   try {
@@ -74,10 +75,11 @@ async function loginUser(url, data) {
     //console.log(url, data, options);
 
     const response = await fetch(url, options);
-    //console.log(response);
+    console.log(response);
     const answer = await response.json();
     console.log(answer);
-    if (answer.message === "Invalid email or password") {
+
+    if (answer.statusCode === 401) {
       emailMsg.innerHTML = "Invalid email or password.";
     }
 
@@ -90,4 +92,3 @@ async function loginUser(url, data) {
     console.warn(error);
   }
 }
-
