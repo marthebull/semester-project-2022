@@ -12,6 +12,9 @@ $danger: #D08A58;
 
 $input-placeholder-color: #909090;
 
+$placeholder-opacity-max: .1;
+$placeholder-opacity-min: .05;
+
 .box-shadow-pink {
     box-shadow: 4px 4px 10px rgba(#D08A58, .15);
 }
@@ -61,6 +64,7 @@ $btn-font-weight: 600;
     width: 50px;
     height: 50px;
 }
+
 
 
 
