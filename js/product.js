@@ -28,7 +28,7 @@ async function getListing(url) {
     //console.log(response);
     const listing = await response.json();
     console.log(listing);
-    //writeListing(listing, listingCont);
+    writeListing(listing, listingCont);
   } catch (error) {
     console.warn(error);
   }
