@@ -8,10 +8,15 @@ const id = params.get("id");
 //console.log(id);
 const viewListingEndpoint = `/auction/listings/${id}`;
 const listingUrl = `${API_BASE_URL}${viewListingEndpoint}?_seller=true&_bids=true`;
+const makeBidUrl = `${API_BASE_URL}${viewListingEndpoint}/bids`;
+//console.log(makeBidUrl);
 
 // Gets elements needed
 const listingCont = document.getElementById("listing-cont");
 const bidsCont = document.getElementById("bids-on-listing");
+//const bidInput = document.getElementById("place-bid-input");
+//const sendBidBtn = document.getElementById("send-bid-btn");
+//const bidInputMsg = document.getElementById("bid-input-msg");
 
 // Gets listing by id
 async function getListing(url) {
@@ -132,18 +137,23 @@ const writeListing = (listing, outElement) => {
   // Checks if logged in or not, display login btn or bid btn
   const bidOrLogin = document.getElementById("bid-or-login");
 
-  if (localStorage.getItem("accessToken" && timeLeft !== "EXPIRED")) {
+  if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
     bidOrLogin.innerHTML = `
-        <input type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
-        <button type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-out">Place bid</button>
+        <p class="text-danger justify-content-start" id="bid-input-msg"></p>
+        <input id="place-bid-input" type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
+        <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-out">Place bid</button>
                     `;
+    const sendBidBtn = document.getElementById("send-bid-btn");
+    sendBidBtn.addEventListener("click", validateAndProcess);
+
     console.log(timeLeft);
-  } else if (timeLeft === "EXPIRED") {
+  } else if (localStorage.getItem("accessToken") && timeLeft === "EXPIRED") {
     bidOrLogin.innerHTML = "";
     bidOrLogin.innerHTML = `
         <p class="mb-0 text-danger pb-3">This listing has expired</p>
         <button id="bid-expired" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Browse other listings</button>
                     `;
+    console.log("went to expired");
     const expiredListingBtn = document.getElementById("bid-expired");
     // Sends user to home page to browser other listings
     expiredListingBtn.addEventListener("click", function (e) {
@@ -156,6 +166,7 @@ const writeListing = (listing, outElement) => {
                     `;
     const loginToBidBtn = document.getElementById("login-to-bid");
     // Sends user to login page if not logged in
+    console.log("went to logged out");
     loginToBidBtn.addEventListener("click", function (e) {
       window.location.href = "../home.html";
       console.log("Klikket på knapp");
@@ -223,3 +234,50 @@ const writeBids = (bids, outElement) => {
 
   outElement.innerHTML = newDivs;
 };
+
+// Make bid
+async function makeBid(url, data) {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    //console.log(accessToken);
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    };
+    //console.log(url, data, options);
+    const response = await fetch(url, options);
+    console.log(response);
+    const answer = await response.json();
+    if (response.status === 200) {
+      //window.location = "../home-feed.html";
+    }
+    console.log(answer);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+// Prosesses and validates bid input
+function validateAndProcess(event) {
+  event.preventDefault();
+  const bidInput = document.getElementById("place-bid-input").value.trim();
+  const bidInputMsg = document.getElementById("bid-input-msg");
+  const bidToSend = parseInt(bidInput);
+  console.log(bidToSend);
+
+  let postData = {
+    amount: bidToSend,
+  };
+
+  if (!isNaN(bidToSend)) {
+    console.log("value is a number");
+  } else {
+    bidInputMsg.innerHTML = "Bid has to be a number.";
+  }
+
+  makeBid(makeBidUrl, postData);
+}
