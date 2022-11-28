@@ -14,9 +14,7 @@ const makeBidUrl = `${API_BASE_URL}${viewListingEndpoint}/bids`;
 // Gets elements needed
 const listingCont = document.getElementById("listing-cont");
 const bidsCont = document.getElementById("bids-on-listing");
-//const bidInput = document.getElementById("place-bid-input");
-//const sendBidBtn = document.getElementById("send-bid-btn");
-//const bidInputMsg = document.getElementById("bid-input-msg");
+const bidsHeader = document.getElementById("bids-header");
 
 // Gets listing by id
 async function getListing(url) {
@@ -233,6 +231,10 @@ const writeBids = (bids, outElement) => {
   }
 
   outElement.innerHTML = newDivs;
+
+  if (bids.bids.length > 0) {
+    bidsHeader.innerHTML = "BIDS";
+  }
 };
 
 // Make bid
@@ -254,7 +256,7 @@ async function makeBid(url, data) {
     const answer = await response.json();
     if (response.status === 200) {
       //window.location = "../home-feed.html";
-    } 
+    }
     console.log(answer);
   } catch (error) {
     console.warn(error);
