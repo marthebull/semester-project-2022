@@ -5,12 +5,13 @@ const params = new URLSearchParams(queryString);
 // get the id parameter from the query string
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const id = params.get("id");
-console.log(id);
+//console.log(id);
 const viewListingEndpoint = `/auction/listings/${id}`;
 const listingUrl = `${API_BASE_URL}${viewListingEndpoint}?_seller=true&_bids=true`;
 
 // Gets elements needed
 const listingCont = document.getElementById("listing-cont");
+const bidsCont = document.getElementById("bids-on-listing");
 
 // Gets listing by id
 async function getListing(url) {
@@ -29,6 +30,7 @@ async function getListing(url) {
     const listing = await response.json();
     console.log(listing);
     writeListing(listing, listingCont);
+    writeBids(listing, bidsCont);
   } catch (error) {
     console.warn(error);
   }
@@ -55,6 +57,8 @@ const writeListing = (listing, outElement) => {
         ]
       : listing.seller.avatar;
 
+  const description = listing.description !== null ? listing.description : "";
+
   // sets time
   const date = new Date(listing.endsAt).getTime();
   const now = new Date().getTime();
@@ -74,6 +78,23 @@ const writeListing = (listing, outElement) => {
     timeLeft = "EXPIRED";
   }
 
+  // highest bid
+  const allbids = listing.bids;
+  let highest = 0;
+  //console.log(allbids);
+
+  function findHighestBid(allbids) {
+    if (allbids.length !== 0) {
+      highest = allbids
+        .map((o) => o.amount)
+        .reduce(function (a, b) {
+          return Math.max(a, b);
+        });
+      //console.log(highest);
+    }
+  }
+  findHighestBid(allbids);
+
   outElement.innerHTML = `
             <div class="col-12 col-md-6 mx-auto d-flex justify-content-center">
                 <img class="w-100 rounded" src="${productImg}" alt="Placeholder image" style="object-fit: cover;">
@@ -84,7 +105,7 @@ const writeListing = (listing, outElement) => {
                     <div class="d-flex pt-3">
                         <div>
                             <p class="m-1">Highest bid:</p>
-                            <p class="m-1"><strong>24</strong></p>
+                            <p class="m-1"><strong>${highest} credits</strong></p>
                         </div>
                         <div class="ps-3">
                             <p class="m-1 ">Ends in:</p>
@@ -92,7 +113,7 @@ const writeListing = (listing, outElement) => {
                         </div>
                     </div>
                 </div>
-                <p class="pb-3">${listing.description}</p>
+                <p class="pb-3">${description}</p>
                 <div>
                     <a href="#" class="d-flex mb-5 text-black text-decoration-none">
                         <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="Profile picture" style="width: 50px;">
@@ -145,4 +166,48 @@ const writeListing = (listing, outElement) => {
       timer[i].classList.add("expired");
     }
   }
+};
+
+// list all bids
+const writeBids = (bids, outElement) => {
+  outElement.innerHTML = "";
+  let newDivs = "";
+
+  //for (let bid of bids) {
+  for (let i = 0; i < bids.bids.length; i++) {
+    //console.log(bids.bids[i].bidderName, bids.bids[i].amount, bids.bids[i].created);
+
+    let biddersName = bids.bids[i].bidderName;
+    let bidAmount = bids.bids[i].amount;
+    let biddingDate = new Date(bids.bids[i].created);
+
+    //let displaydate = biddingDate.getDate();
+
+    console.log(biddingDate);
+
+    let displaydate = biddingDate.toLocaleString("default", {
+      day: "2-digit",
+      month: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "numeric",
+    });
+    console.log(displaydate);
+
+    newDivs += `
+            <div class="col pb-4 placeholder-glow">
+                <div class="card h-100 border-0 box-shadow-pink p-4">
+                    <a href="#" class="d-flex mb-4 text-black text-decoration-none">
+                        <div class="ms-2">
+                            <p class="mb-0"><strong>@${biddersName}</strong></p>
+                            <p class="mb-0 text-primary">${displaydate}</p>
+                        </div>
+                    </a>
+                    <p class="pb-1 h2 text-center"><strong>${bidAmount} credits</strong></p>
+                </div>
+            </div>
+            `;
+  }
+
+  outElement.innerHTML = newDivs;
 };
