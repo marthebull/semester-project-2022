@@ -180,10 +180,7 @@ const writeBids = (bids, outElement) => {
     let biddersName = bids.bids[i].bidderName;
     let bidAmount = bids.bids[i].amount;
     let biddingDate = new Date(bids.bids[i].created);
-
-    //let displaydate = biddingDate.getDate();
-
-    console.log(biddingDate);
+    //console.log(biddingDate);
 
     let displaydate = biddingDate.toLocaleString("default", {
       day: "2-digit",
@@ -192,7 +189,9 @@ const writeBids = (bids, outElement) => {
       hour: "2-digit",
       minute: "numeric",
     });
-    console.log(displaydate);
+    //console.log(displaydate);
+
+    let credits = bids.bids[i].amount <= 1 ? "credit" : "credits";
 
     newDivs += `
             <div class="col pb-4 placeholder-glow">
@@ -203,7 +202,7 @@ const writeBids = (bids, outElement) => {
                             <p class="mb-0 text-primary">${displaydate}</p>
                         </div>
                     </a>
-                    <p class="pb-1 h2 text-center"><strong>${bidAmount} credits</strong></p>
+                    <p class="pb-1 h2 text-center"><strong>${bidAmount} ${credits}</strong></p>
                 </div>
             </div>
             `;
