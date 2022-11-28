@@ -36,7 +36,7 @@ async function getListing(url) {
   }
 }
 
-// Kaller funksjonen som henter poost
+// Calls function who gets listinginfo
 getListing(listingUrl);
 
 // Writes listing info to output element
@@ -132,11 +132,24 @@ const writeListing = (listing, outElement) => {
   // Checks if logged in or not, display login btn or bid btn
   const bidOrLogin = document.getElementById("bid-or-login");
 
-  if (localStorage.getItem("accessToken")) {
+  if (localStorage.getItem("accessToken" && timeLeft !== "EXPIRED")) {
     bidOrLogin.innerHTML = `
         <input type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
         <button type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-out">Place bid</button>
                     `;
+    console.log(timeLeft);
+  } else if (timeLeft === "EXPIRED") {
+    bidOrLogin.innerHTML = "";
+    bidOrLogin.innerHTML = `
+        <p class="mb-0 text-danger pb-3">This listing has expired</p>
+        <button id="bid-expired" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Browse other listings</button>
+                    `;
+    const expiredListingBtn = document.getElementById("bid-expired");
+    // Sends user to home page to browser other listings
+    expiredListingBtn.addEventListener("click", function (e) {
+      window.location.href = "../home.html";
+      console.log("Klikket på knapp");
+    });
   } else {
     bidOrLogin.innerHTML = `
         <button id="login-to-bid" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Log in to place bid</button>
@@ -144,7 +157,7 @@ const writeListing = (listing, outElement) => {
     const loginToBidBtn = document.getElementById("login-to-bid");
     // Sends user to login page if not logged in
     loginToBidBtn.addEventListener("click", function (e) {
-      window.location.href = "../index.html";
+      window.location.href = "../home.html";
       console.log("Klikket på knapp");
     });
   }
