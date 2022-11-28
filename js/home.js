@@ -75,6 +75,23 @@ const writeListings = (list, outElement) => {
       timeLeft = "EXPIRED";
     }
 
+    // highest bid
+    const allbids = content.bids;
+    let highest = 0;
+    //console.log(allbids);
+
+    function findHighestBid(allbids) {
+      if (allbids.length !== 0) {
+        highest = allbids
+          .map((o) => o.amount)
+          .reduce(function (a, b) {
+            return Math.max(a, b);
+          });
+        //console.log(highest);
+      }
+    }
+    findHighestBid(allbids);
+
     newDivs += `
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
@@ -90,8 +107,8 @@ const writeListings = (list, outElement) => {
                     </a>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
-                                <p class="m-1">Bids:</p>
-                                <p class="m-1"><strong>${content._count.bids}</strong></p>
+                                <p class="m-1">Highest bid:</p>
+                                <p class="m-1"><strong>${highest}</strong></p>
                             </div>
                             <div>
                                 <p class="m-1 text-end">Ends in:</p>
