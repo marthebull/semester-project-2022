@@ -254,7 +254,7 @@ async function makeBid(url, data) {
     const answer = await response.json();
     if (response.status === 200) {
       //window.location = "../home-feed.html";
-    }
+    } 
     console.log(answer);
   } catch (error) {
     console.warn(error);
