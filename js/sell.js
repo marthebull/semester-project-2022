@@ -77,13 +77,14 @@ function validateAndProcess(event) {
   const title = listingTitle.value.trim();
   const description = listingDescription.value.trim();
   let media = [`${listingMainImg.value.trim()}`];
-  console.log(media);
 
-  if (media.length <= 0) {
+  if (media[0] === "") {
     media = [
-      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
+      "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
     ];
   }
+
+  console.log(media);
 
   const bidEnds = listingDate.value.trim();
   console.log(bidEnds);
