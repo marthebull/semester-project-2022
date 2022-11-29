@@ -77,8 +77,9 @@ function validateAndProcess(event) {
   const title = listingTitle.value.trim();
   const description = listingDescription.value.trim();
   let media = [`${listingMainImg.value.trim()}`];
+  console.log(media);
 
-  if (media.value === []) {
+  if (media.length <= 0) {
     media = [
       "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
     ];
@@ -137,23 +138,24 @@ settingDate();
 
 // show preview
 listingTitle.addEventListener("keyup", preview);
-listingMainImg.addEventListener("keyup", preview);
+listingMainImg.addEventListener("keyup", preview, test);
+
+function test() {
+  console.log(listingMainImg.value);
+}
 
 async function preview() {
   // teste img først og gi den et navn, sende den inn i preview boks og
   //sjekke om den er noe eller ikke, enten sette inn den url eller placeholder
 
-  previewCont.innerHTML = "";
   previewCont.innerHTML = `
                 <div class="card border-0 box-shadow-pink">
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
                     <img id="preview-img" src="${
                       listingMainImg.value !== ""
                         ? listingMainImg.value
-                        : [
-                            "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
-                          ]
-                    }" class="card-img-top card-img-size" alt="Product picture placeholder"/>
+                        : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                    } " class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
                           listingTitle.value
