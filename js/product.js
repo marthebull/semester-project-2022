@@ -118,7 +118,7 @@ const writeListing = (listing, outElement) => {
                 </div>
                 <p class="pb-3">${description}</p>
                 <div>
-                    <a href="#" class="d-flex mb-5 text-black text-decoration-none">
+                    <a href="#" class="d-flex mb-3 text-black text-decoration-none">
                         <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="Profile picture" style="width: 50px;">
                         <div class="ms-2">
                             <p class="mb-0">Listed by</p>
