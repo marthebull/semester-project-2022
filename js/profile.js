@@ -164,7 +164,7 @@ const writeProfileInfo = (profile, outElement) => {
             <p class="text-center">Credits: ${profile.credits}</p>
             <p class="text-center">Active listings: ${profile.listings.length}</p>
             <p class="text-center mb-4">Wins: ${profile.wins.length}</p>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#avatar-modal" class="btn btn-primary text-white">Change avatar</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#avatar-modal" class="btn btn-primary text-white col-12 col-sm-6 col-lg-12 mx-auto">Edit avatar</button>
             `;
 };
 
