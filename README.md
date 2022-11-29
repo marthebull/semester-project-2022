@@ -19,7 +19,9 @@ Links:
 
 <a href="https://github.com/marthebull/semester-project-2">Github repo</a>
 
-<a href="https://highestbidder.netlify.app/">Netlify</a>
+<a href="https://highestbidder.netlify.app/">Netlify main: https://highestbidder.netlify.app/</a>
+
+<a href="https://effortless-begonia-050acb.netlify.app/">Netlify dev: https://effortless-begonia-050acb.netlify.app/</a>
 
 ---
 
@@ -27,7 +29,7 @@ HUSK!!
 
 - minimize css for production code
 - hva må en installere på en ny maskin for at det skal funke der?
-- lage moduler?? 
+- lage moduler??
 
 ---
 
@@ -39,5 +41,4 @@ Sources:
 
 Navbar code for bootstrap: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-navbar.php
 
-Countdown for timer: https://www.w3schools.com/howto/howto_js_countdown.asp 
-
+Countdown for timer: https://www.w3schools.com/howto/howto_js_countdown.asp

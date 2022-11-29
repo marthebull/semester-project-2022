@@ -126,6 +126,7 @@ const writeListing = (listing, outElement) => {
                         </div>
                     </a>
                 </div>
+                <p class="text-danger justify-content-start mb-0 text-center" id="bid-error-msg"></p>
                 <div id="bid-or-login" class="d-flex flex-column justify-content-center">
                     
                 </div>
@@ -144,7 +145,7 @@ const writeListing = (listing, outElement) => {
     const sendBidBtn = document.getElementById("send-bid-btn");
     sendBidBtn.addEventListener("click", validateAndProcess);
 
-    console.log(timeLeft);
+    //console.log(timeLeft);
   } else if (localStorage.getItem("accessToken") && timeLeft === "EXPIRED") {
     bidOrLogin.innerHTML = "";
     bidOrLogin.innerHTML = `
@@ -254,8 +255,11 @@ async function makeBid(url, data) {
     const response = await fetch(url, options);
     console.log(response);
     const answer = await response.json();
+    const bidError = document.getElementById("bid-error-msg");
     if (response.status === 200) {
-      //window.location = "../home-feed.html";
+      window.location.reload();
+    } else {
+      bidError.innerHTML = answer.errors[0].message;
     }
     console.log(answer);
   } catch (error) {

@@ -27,7 +27,7 @@
     <header class="sticky-top header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-4 pb-4 box-shadow-pink">
             <div class="container-fluid col-11 col-sm-10 p-0">
-                <a href="./home.html" class="navbar-brand knewave display-2">highestbidder</a>
+                <a href="./home.html" class="navbar-brand knewave display-2 logo-shadow">highestbidder</a>
                 <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
                     <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
@@ -47,13 +47,18 @@
         </div>
     </header>
     <main style="min-height: 75vh;">
-        <div class="input-group justify-content-center pt-4 pb-5">
-            <div class="form-outline d-flex col-10 col-md-6">
-                <input id="search-bar" type="search" id="form1" class="form-control bg-white border-0" placeholder="Search..."/>
-                <button type="button" class="btn btn-primary ms-3">
-                    <i class="fas fa-search text-white"></i>
-                </button>
+        <div class="input-group d-flex flex-column justify-content-center pt-4 pb-5">
+            <div class="form-outline col-10 col-md-6 justify-content-center mx-auto">
+                <input id="search-bar" type="search" id="form1" class="form-control bg-white border-0 mb-3" placeholder="Search..."/>
             </div>
+<!--
+            <div class="d-flex justify-content-between col-10 col-md-8 mx-auto">
+                <button type="button" class="btn btn-primary">Latest first</button>
+                <button type="button" class="btn btn-primary">Oldest first</button>
+                <button type="button" class="btn btn-primary">Active listings</button>
+                <button type="button" class="btn btn-primary">Expired listings</button>
+            </div>
+-->
         </div>
         <div id="listings-feed" class="col-10 mx-auto row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 mb-5 pt-4 gx-md-5">
             <div class="col pb-4 placeholder-glow">
