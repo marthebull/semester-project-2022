@@ -101,8 +101,9 @@ function validateAndProcess(event) {
   console.log(`Title: ${submittedTitle}`);
 
   listingTitleMsg.innerHTML = "";
-  if (submittedTitle.length < 1) {
+  if (submittedTitle.length == "") {
     listingTitleMsg.innerHTML = "Please enter a title.";
+    return false;
   }
 
   let submittedDescription = listingDescription.value.trim();
@@ -121,10 +122,11 @@ function settingDate() {
   var date = new Date();
 
   var minutes = date.getMinutes();
-  var hours = date.getHours();
-  var day = date.getDate() + 1;
+  var hours = date.getHours() + 2;
+  var day = date.getDate();
   var month = date.getMonth() + 1;
   var year = date.getFullYear();
+  console.log(date);
 
   if (month < 10) month = "0" + month;
   if (day < 10) day = "0" + day;
@@ -132,6 +134,7 @@ function settingDate() {
   if (minutes < 10) minutes = "0" + minutes;
 
   var today = year + "-" + month + "-" + day + "T" + hours + ":" + minutes;
+  console.log(today);
   listingDate.value = today;
   console.log(listingDate.value);
 }

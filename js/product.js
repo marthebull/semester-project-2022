@@ -126,7 +126,7 @@ const writeListing = (listing, outElement) => {
                         </div>
                     </a>
                 </div>
-                <p class="text-danger justify-content-start mb-0 text-center" id="bid-error-msg"></p>
+                <p class="text-danger justify-content-start text-center" id="bid-error-msg"></p>
                 <div id="bid-or-login" class="d-flex flex-column justify-content-center">
                     
                 </div>
@@ -138,7 +138,6 @@ const writeListing = (listing, outElement) => {
 
   if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
     bidOrLogin.innerHTML = `
-        <p class="text-danger justify-content-start" id="bid-input-msg"></p>
         <input id="place-bid-input" type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
         <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-out">Place bid</button>
                     `;
@@ -278,12 +277,6 @@ function validateAndProcess(event) {
   let postData = {
     amount: bidToSend,
   };
-
-  if (!isNaN(bidToSend)) {
-    console.log("value is a number");
-  } else {
-    bidInputMsg.innerHTML = "Bid has to be a number.";
-  }
 
   makeBid(makeBidUrl, postData);
 }
