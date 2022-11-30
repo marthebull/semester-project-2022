@@ -81,7 +81,7 @@ const writeListings = (list, outElement) => {
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
                     <img src="${productImg}" class="card-img-top card-img-size" alt="Product">
-                    <div class="card-body p-4 position-relative">
+                    <div class="card-body p-4">
                         <h5 class="card-title"><a href="product.html?id=${listing.id}" class="text-black text-decoration-none stretched-link">${listing.title}</a></h5>
                         <p class="m-1">${listing.description}</p>
                         <div class="d-flex justify-content-between pt-3 mb-3">

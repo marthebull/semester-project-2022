@@ -46,6 +46,15 @@
   height: 50px;
 }
 
+.listing-img {
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+
+@media (max-width: 768px) {
+  .listing-img {
+    border-radius: 0.375rem 0.375rem 0 0;
+  }
+}
 /*!
  * Bootstrap  v5.2.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

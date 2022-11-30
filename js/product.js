@@ -100,10 +100,10 @@ const writeListing = (listing, outElement) => {
   findHighestBid(allbids);
 
   outElement.innerHTML = `
-            <div class="col-12 col-md-6 mx-auto d-flex justify-content-center">
-                <img class="w-100 rounded" src="${productImg}" alt="Placeholder image" style="object-fit: cover;">
+            <div class="col-12 col-md-6 d-flex">
+                <img class="w-100 listing-img" src="${productImg}" alt="Placeholder image" style="object-fit: cover;">
             </div>
-            <div class="col-12 col-md-5 d-flex flex-column justify-content-center col mx-auto pt-5 pt-md-2">
+            <div class="col-12 col-md-5 d-flex flex-column justify-content-center col mx-auto p-5 ">
                 <div class="mb-4">
                     <h2 class="mb-2">${listing.title}</h2>
                     <div class="d-flex pt-3">
