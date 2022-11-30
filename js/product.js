@@ -214,8 +214,9 @@ const writeListing = (listing, outElement) => {
 const writeBids = (bids, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
+  console.log(bids);
+  bids.bids.reverse();
 
-  //for (let bid of bids) {
   for (let i = 0; i < bids.bids.length; i++) {
     //console.log(bids.bids[i].bidderName, bids.bids[i].amount, bids.bids[i].created);
 
@@ -290,7 +291,6 @@ async function makeBid(url, data) {
 function validateAndProcess(event) {
   event.preventDefault();
   const bidInput = document.getElementById("place-bid-input").value.trim();
-  const bidInputMsg = document.getElementById("bid-input-msg");
   const bidToSend = parseInt(bidInput);
   console.log(bidToSend);
 
@@ -301,6 +301,7 @@ function validateAndProcess(event) {
   makeBid(makeBidUrl, postData);
 }
 
+// deletes listing
 async function deletePost(id) {
   //console.log(id);
   const url = `${deleteUrl}${id}`;
