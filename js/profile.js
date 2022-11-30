@@ -1,3 +1,6 @@
+
+
+// APi urls
 const API_BASE_URL = `https://api.noroff.dev/api/v1`;
 const userName = localStorage.getItem("username");
 const profileEndpoint = `/auction/profiles/${userName}?_listings=true`;

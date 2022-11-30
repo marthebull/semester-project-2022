@@ -99,12 +99,12 @@ const writeListings = (list, outElement) => {
                     <div class="card-body p-4">
                         <h5 class="card-title"><a href="product.html?id=${content.id}" class="text-black text-decoration-none stretched-link">${content.title}</a></h5>
                         <a href="#" class="d-flex mb-3 pt-2 text-black text-decoration-none">
-                        <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="">
-                        <div class="ms-2">
-                            <p class="mb-0">Listed by</p>
-                            <p class="mb-0"><strong>@${content.seller.name}</strong></p>
-                        </div>
-                    </a>
+                            <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="">
+                            <div class="ms-2">
+                                <p class="mb-0">Listed by</p>
+                                <p class="mb-0"><strong>@${content.seller.name}</strong></p>
+                            </div>
+                        </a>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Highest bid:</p>
