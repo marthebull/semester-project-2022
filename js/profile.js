@@ -173,7 +173,7 @@ const writeProfileInfo = (profile, outElement) => {
   outElement.innerHTML = `
             
             <img class="mx-auto rounded-circle profile-img" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
-            <h1 class="text-center mb-5 pt-4 knewave smaller">@${profile.name}</h1>
+            <p class="text-center mb-5 pt-4"><strong>@${profile.name}</strong></p>
             <p class="text-center">Credits: ${profile.credits}</p>
             <p class="text-center">Listings: ${profile.listings.length}</p>
             <p class="text-center mb-4">Wins: ${profile.wins.length}</p>
