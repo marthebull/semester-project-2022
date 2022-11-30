@@ -81,10 +81,10 @@ const writeListings = (list, outElement) => {
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
                     <img src="${productImg}" class="card-img-top card-img-size" alt="Product">
-                    <div class="card-body p-4">
+                    <div class="card-body p-4 position-relative">
                         <h5 class="card-title"><a href="product.html?id=${listing.id}" class="text-black text-decoration-none stretched-link">${listing.title}</a></h5>
                         <p class="m-1">${listing.description}</p>
-                        <div class="d-flex justify-content-between pt-3">
+                        <div class="d-flex justify-content-between pt-3 mb-3">
                             <div>
                                 <p class="m-1">Bids:</p>
                                 <p class="m-1"><strong>${listing._count.bids}</strong></p>
@@ -118,6 +118,18 @@ const writeListings = (list, outElement) => {
       timer[i].classList.remove("not-expired");
       timer[i].classList.add("expired");
     }
+  }
+
+  // Delete btns
+  const deleteBtns = document.querySelectorAll("button.btnDelete");
+  //console.log(deleteBtns);
+  for (let btnDelete of deleteBtns) {
+    btnDelete.addEventListener("click", () => {
+      //console.log(btnDelete.getAttribute("data-delete"));
+      if (confirm("Are you sure you want to delete this post?")) {
+        deletePost(btnDelete.getAttribute("data-delete"));
+      }
+    });
   }
 };
 
@@ -162,7 +174,7 @@ const writeProfileInfo = (profile, outElement) => {
             <img class="mx-auto rounded-circle profile-img" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
             <h1 class="text-center mb-5 pt-4 knewave smaller">@${profile.name}</h1>
             <p class="text-center">Credits: ${profile.credits}</p>
-            <p class="text-center">Active listings: ${profile.listings.length}</p>
+            <p class="text-center">Listings: ${profile.listings.length}</p>
             <p class="text-center mb-4">Wins: ${profile.wins.length}</p>
             <button type="button" data-bs-toggle="modal" data-bs-target="#avatar-modal" class="btn btn-primary text-white col-12 col-sm-6 col-lg-12 mx-auto">Edit avatar</button>
             `;
@@ -190,7 +202,7 @@ async function updateAvatar(url, data) {
     console.log(answer);
     if (answer.statusCode) {
       updateAvatarMsg.innerHTML =
-        "Invalid image URL, your url should match this pattern : https://url.com/image.jpg";
+        "Invalid image URL. Your URL should match this pattern : https://url.com/image.jpg";
     }
 
     if (answer.name) {

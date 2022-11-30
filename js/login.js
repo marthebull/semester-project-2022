@@ -27,15 +27,7 @@ function validateForm(e) {
       "Email can only contain characters, numbers, dot, hyphen and underscore.";
   }
   if (submittedEmail.length < 11) {
-    emailMsg.innerHTML = "Please enter a valid email.";
-  }
-  if (
-    !(
-      submittedEmail.includes("@noroff.no") ||
-      submittedEmail.includes("@stud.noroff.no")
-    )
-  ) {
-    emailMsg.innerHTML = "Email must include @stud.noroff.no or @noroff.no.";
+    emailMsg.innerHTML = "Email must be a valid email.";
   }
 
   let submittedPassword = passwordInput.value.trim();
@@ -43,7 +35,7 @@ function validateForm(e) {
 
   passwordMsg.innerHTML = "";
   if (submittedPassword.length < 8) {
-    passwordMsg.innerHTML = "Password must be at least 8 characters long.";
+    passwordMsg.innerHTML = "Please enter password.";
   }
 }
 
@@ -51,7 +43,7 @@ function validateForm(e) {
 loginBtn.addEventListener("click", validateAndProcess);
 function validateAndProcess(event) {
   event.preventDefault();
-  console.log("du har trykket");
+  //console.log("du har trykket");
 
   const data = {
     email: emailInput.value.trim().toLowerCase(),
@@ -78,14 +70,12 @@ async function loginUser(url, data) {
     console.log(response);
     const answer = await response.json();
     console.log(answer);
-
-    if (answer.statusCode === 401) {
-      emailMsg.innerHTML = "Invalid email or password.";
-    }
-
     localStorage.setItem("username", answer.name);
     localStorage.setItem("accessToken", answer.accessToken);
-    if (response.status === 200) {
+
+    if (answer.statusCode === 401) {
+      emailMsg.innerHTML = answer.errors[0].message;
+    } else if (response.status === 200) {
       window.location = "../home.html";
     }
   } catch (error) {

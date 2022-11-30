@@ -62,13 +62,15 @@ function validateForm(e) {
   console.log(`Avatar URL: ${submittedAvatar}`);
   avatarMsg.innerHTML = "";
   let avatarPattern = /\.(jpeg|jpg|gif|png|svg)$/;
-  if (!avatarPattern.test(submittedAvatar)) {
-    avatarMsg.innerHTML = "Invalid image URL";
-  }
-  if (submittedAvatar.value === null) {
+  if (submittedAvatar.value == "") {
     avatarInput.innerHTML =
       "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
     //console.log(`Avatar URL: https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg`);
+  } else if (
+    !submittedAvatar.value == "" &&
+    !avatarPattern.test(submittedAvatar)
+  ) {
+    avatarMsg.innerHTML = "Please enter a valid avatar url.";
   }
 }
 

@@ -10,6 +10,7 @@ const viewListingEndpoint = `/auction/listings/${id}`;
 const listingUrl = `${API_BASE_URL}${viewListingEndpoint}?_seller=true&_bids=true`;
 const makeBidUrl = `${API_BASE_URL}${viewListingEndpoint}/bids`;
 //console.log(makeBidUrl);
+const deleteUrl = `${API_BASE_URL}/auction/listings/`;
 
 // Gets elements needed
 const listingCont = document.getElementById("listing-cont");
@@ -133,13 +134,32 @@ const writeListing = (listing, outElement) => {
             </div>
             `;
 
-  // Checks if logged in or not, display login btn or bid btn
   const bidOrLogin = document.getElementById("bid-or-login");
 
-  if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
+  if (
+    localStorage.getItem("accessToken") &&
+    localStorage.getItem("username") === listing.seller.name
+  ) {
+    bidOrLogin.innerHTML = "";
+    bidOrLogin.innerHTML = `
+                    <button id="delete-btn" type="button" class="btn btn-danger text-white mx-auto text-center mb-4 col-12 hide-out">Delete listing</button>
+                    `;
+
+    const deleteBtn = document.getElementById("delete-btn");
+    //console.log(deleteBtns);
+
+    deleteBtn.addEventListener("click", () => {
+      //console.log(btnDelete.getAttribute("data-delete"));
+      if (confirm("Are you sure you want to delete this listing?")) {
+        deletePost(listing.id);
+      }
+    });
+  }
+  // Checks if logged in or not, display login btn or bid btn
+  else if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
     bidOrLogin.innerHTML = `
         <input id="place-bid-input" type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
-        <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-out">Place bid</button>
+        <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center mb-3 col-12 hide-out">Place bid</button>
                     `;
     const sendBidBtn = document.getElementById("send-bid-btn");
     sendBidBtn.addEventListener("click", validateAndProcess);
@@ -164,7 +184,7 @@ const writeListing = (listing, outElement) => {
                     `;
     const loginToBidBtn = document.getElementById("login-to-bid");
     // Sends user to login page if not logged in
-    console.log("went to logged out");
+    //console.log("went to logged out");
     loginToBidBtn.addEventListener("click", function (e) {
       window.location.href = "../home.html";
       console.log("Klikket på knapp");
@@ -279,4 +299,28 @@ function validateAndProcess(event) {
   };
 
   makeBid(makeBidUrl, postData);
+}
+
+async function deletePost(id) {
+  //console.log(id);
+  const url = `${deleteUrl}${id}`;
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    console.log(url, options);
+    const response = await fetch(url, options);
+    console.log(response);
+
+    if (response.status == 204) {
+      window.location = "../home.html";
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
