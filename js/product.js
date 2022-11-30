@@ -16,6 +16,7 @@ const deleteUrl = `${API_BASE_URL}/auction/listings/`;
 const listingCont = document.getElementById("listing-cont");
 const bidsCont = document.getElementById("bids-on-listing");
 const bidsHeader = document.getElementById("bids-header");
+const profileModal = document.getElementById("profile-info");
 
 // Gets listing by id
 async function getListing(url) {
@@ -119,7 +120,7 @@ const writeListing = (listing, outElement) => {
                 </div>
                 <p class="pb-3">${description}</p>
                 <div>
-                    <a href="#" class="d-flex mb-3 text-black text-decoration-none">
+                    <a data-bs-toggle="modal" data-bs-target="#profile-modal" class="d-flex mb-3 text-black text-decoration-none" style="cursor:pointer;">
                         <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="Profile picture" style="width: 50px;">
                         <div class="ms-2">
                             <p class="mb-0">Listed by</p>
@@ -208,6 +209,15 @@ const writeListing = (listing, outElement) => {
       timer[i].classList.add("expired");
     }
   }
+
+  //profileModal; Writes sellers info into modal
+  profileModal.innerHTML = `
+            <img class="mx-auto rounded-circle profile-img mb-4" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
+            <p class="text-center"><strong>@${listing.seller.name}</strong></p>
+            <p class="text-center">${listing.seller.email}</p>
+            <p class="text-center">Wins: ${listing.seller.wins.length}</p>
+
+  `;
 };
 
 // list all bids
@@ -239,7 +249,7 @@ const writeBids = (bids, outElement) => {
     newDivs += `
             <div class="col pb-4 placeholder-glow">
                 <div class="card h-100 border-0 box-shadow-pink p-4">
-                    <a href="#" class="d-flex mb-4 text-black text-decoration-none">
+                    <a class="d-flex mb-4 text-black text-decoration-none">
                         <div class="ms-2">
                             <p class="mb-0"><strong>@${biddersName}</strong></p>
                             <p class="mb-0 text-primary">${displaydate}</p>
