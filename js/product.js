@@ -51,7 +51,7 @@ const writeListing = (listing, outElement) => {
     listing.media.length !== 0
       ? `${listing.media[0]}`
       : [
-          "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
+          "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
         ];
 
   const profileImg =
