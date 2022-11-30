@@ -3,31 +3,29 @@ import { toTopBtn, backToTop } from "./to-top.js";
 // Display/hide things when logged in/logged out
 
 // sign in/log out nav-menu
-  function hideOut() {
-    const loggedIn = localStorage.getItem("accessToken");
-    if (!loggedIn) {
-        const hideElements = document.getElementsByClassName("hide-out");
-        for (var i = 0; i < hideElements.length; i += 1) {
-          hideElements[i].style.display = "none";
-        }
-    } 
-  }
-
-  hideOut();
-
-  function hideIn() {
-    const loggedIn = localStorage.getItem("accessToken");
-    if (loggedIn) {
-      const hideElements = document.getElementsByClassName("hide-in");
-      for (var i = 0; i < hideElements.length; i += 1) {
-        hideElements[i].style.display = "none";
-      }
+function hideOut() {
+  const loggedIn = localStorage.getItem("accessToken");
+  if (!loggedIn) {
+    const hideElements = document.getElementsByClassName("hide-out");
+    for (var i = 0; i < hideElements.length; i += 1) {
+      hideElements[i].style.display = "none";
     }
   }
+}
 
-  hideIn();
+hideOut();
 
+function hideIn() {
+  const loggedIn = localStorage.getItem("accessToken");
+  if (loggedIn) {
+    const hideElements = document.getElementsByClassName("hide-in");
+    for (var i = 0; i < hideElements.length; i += 1) {
+      hideElements[i].style.display = "none";
+    }
+  }
+}
 
+hideIn();
 
 // Credits amount
 const API_BASE_URL = `https://api.noroff.dev/api/v1`;
@@ -66,27 +64,3 @@ async function getProfile(url) {
 
 // Henter all profilinfo
 getProfile(profileUrl);
-
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-  
-
-
