@@ -122,7 +122,7 @@ function settingDate() {
   var date = new Date();
 
   var minutes = date.getMinutes();
-  var hours = date.getHours() + 2;
+  var hours = date.getHours();
   var day = date.getDate();
   var month = date.getMonth() + 1;
   var year = date.getFullYear();
