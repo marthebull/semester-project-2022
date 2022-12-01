@@ -169,7 +169,7 @@ const writeProfileInfo = (profile, outElement) => {
   const profileImg =
     profile.avatar != ""
       ? `${profile.avatar}`
-      : "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
+      : "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/placeholder-profile-img.jpg?raw=true";
   outElement.innerHTML = `
             
             <img class="mx-auto rounded-circle profile-img" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">

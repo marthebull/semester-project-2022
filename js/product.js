@@ -6,6 +6,7 @@ const params = new URLSearchParams(queryString);
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const id = params.get("id");
 //console.log(id);
+
 const viewListingEndpoint = `/auction/listings/${id}`;
 const listingUrl = `${API_BASE_URL}${viewListingEndpoint}?_seller=true&_bids=true`;
 const makeBidUrl = `${API_BASE_URL}${viewListingEndpoint}/bids`;
@@ -17,6 +18,9 @@ const listingCont = document.getElementById("listing-cont");
 const bidsCont = document.getElementById("bids-on-listing");
 const bidsHeader = document.getElementById("bids-header");
 const profileModal = document.getElementById("profile-info");
+const editTitle = document.getElementById("update-title");
+const editDesc = document.getElementById("update-description");
+const editMedia = document.getElementById("update-main-img");
 
 // Gets listing by id
 async function getListing(url) {
@@ -58,11 +62,11 @@ const writeListing = (listing, outElement) => {
   const profileImg =
     listing.seller.avatar === "" || listing.seller.avatar === null
       ? [
-          "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/profile-placeholder-img.jpg?raw=true",
+          "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/placeholder-profile-img.jpg?raw=true",
         ]
       : listing.seller.avatar;
 
-  const description = listing.description !== null ? listing.description : "";
+  //const description = listing.description !== null ? listing.description : "";
 
   // sets time
   const date = new Date(listing.endsAt).getTime();
@@ -118,7 +122,7 @@ const writeListing = (listing, outElement) => {
                         </div>
                     </div>
                 </div>
-                <p class="pb-3">${description}</p>
+                <p class="pb-3">${listing.description}</p>
                 <div>
                     <a data-bs-toggle="modal" data-bs-target="#profile-modal" class="d-flex mb-3 text-black text-decoration-none" style="cursor:pointer;">
                         <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="Profile picture" style="width: 50px;">
@@ -143,17 +147,24 @@ const writeListing = (listing, outElement) => {
   ) {
     bidOrLogin.innerHTML = "";
     bidOrLogin.innerHTML = `
+                    <button id="update-btn" type="button" data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-out">Update listing</button>
                     <button id="delete-btn" type="button" class="btn btn-danger text-white mx-auto text-center mb-4 col-12 hide-out">Delete listing</button>
                     `;
-
     const deleteBtn = document.getElementById("delete-btn");
     //console.log(deleteBtns);
-
     deleteBtn.addEventListener("click", () => {
       //console.log(btnDelete.getAttribute("data-delete"));
       if (confirm("Are you sure you want to delete this listing?")) {
         deletePost(listing.id);
       }
+    });
+
+    const editBtn = document.getElementById("update-btn");
+    editBtn.addEventListener("click", () => {
+      editTitle.innerHTML = `${listing.title}`;
+      editDesc.innerHTML = `${listing.description}`;
+      editMedia.innerHTML = `${listing.media}`;
+      console.log(listing.title, listing.description, listing.media);
     });
   }
   // Checks if logged in or not, display login btn or bid btn
@@ -333,3 +344,59 @@ async function deletePost(id) {
     console.log(error);
   }
 }
+
+// Update modal
+
+async function updateListing(id) {
+  const title = editTitle.value.trim();
+  const desc = editDesc.value.trim();
+  let media = [`${editMedia.value.trim()}`];
+
+  if (media[0] === "") {
+    media = [
+      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
+    ];
+  }
+
+  console.log(media);
+
+  const data = {
+    title: title,
+    body: desc,
+    media: media,
+  };
+
+  const url = `${deleteUrl}${id}`;
+
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    };
+    //console.log(url, options);
+
+    const response = await fetch(url, options);
+    console.log(response);
+    const updateAnswer = await response.json();
+    console.log(updateAnswer);
+
+    const updateError = document.getElementById("update-error-msg");
+    if (response.status === 200) {
+      window.location.reload();
+    } else {
+      updateError.innerHTML = updateAnswer.errors[0].message;
+    }
+  } catch (error) {
+    //console.warn(error);
+  }
+}
+
+const updateSubmit = document.getElementById("update-submit");
+updateSubmit.addEventListener("click", () => {
+  updateListing(id);
+});

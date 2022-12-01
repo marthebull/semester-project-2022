@@ -80,7 +80,7 @@ function validateAndProcess(event) {
 
   if (media[0] === "") {
     media = [
-      "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
     ];
   }
 
