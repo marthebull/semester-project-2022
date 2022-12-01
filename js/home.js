@@ -52,7 +52,7 @@ const writeListings = (list, outElement) => {
     const profileImg =
       content.seller.avatar === "" || content.seller.avatar === null
         ? [
-            "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg",
+            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/profile-placeholder.jpg?raw=true",
           ]
         : content.seller.avatar;
 
