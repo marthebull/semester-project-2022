@@ -224,8 +224,10 @@ const writeListing = (listing, outElement) => {
 const writeBids = (bids, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
-  console.log(bids);
   bids.bids.reverse();
+
+  const bidCount = bids._count.bids;
+  console.log(bidCount);
 
   for (let i = 0; i < bids.bids.length; i++) {
     //console.log(bids.bids[i].bidderName, bids.bids[i].amount, bids.bids[i].created);
@@ -264,7 +266,7 @@ const writeBids = (bids, outElement) => {
   outElement.innerHTML = newDivs;
 
   if (bids.bids.length > 0) {
-    bidsHeader.innerHTML = "BIDS";
+    bidsHeader.innerHTML = `BIDS (${bidCount})`;
   }
 };
 

@@ -5,7 +5,7 @@ const sellUrl = `${API_BASE_URL}${sellEndpoint}`;
 // Input fields and submit button
 const listingTitle = document.getElementById("listing-title");
 const listingDate = document.getElementById("listing-date");
-const listingTime = document.getElementById("listing-time");
+//const listingTime = document.getElementById("listing-time");
 const listingDescription = document.getElementById("listing-description");
 const listingMainImg = document.getElementById("listing-main-img");
 const listingSubmit = document.getElementById("listing-submit");
@@ -142,15 +142,32 @@ settingDate();
 
 // show preview
 listingTitle.addEventListener("keyup", preview);
-listingMainImg.addEventListener("keyup", preview, test);
-
-function test() {
-  console.log(listingMainImg.value);
-}
+listingMainImg.addEventListener("keyup", preview);
+listingDescription.addEventListener("keyup", preview);
+listingDate.addEventListener("click", preview);
 
 async function preview() {
   // teste img først og gi den et navn, sende den inn i preview boks og
   //sjekke om den er noe eller ikke, enten sette inn den url eller placeholder
+
+  // sets time
+  const date = new Date(listingDate.value).getTime();
+  const now = new Date().getTime();
+  const distance = date - now;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  let timeLeft = "";
+
+  if (distance > 0) {
+    timeLeft = `${days}d ${hours}h ${minutes}m`;
+  } else {
+    timeLeft = "EXPIRED";
+  }
 
   previewCont.innerHTML = `
                 <div class="card border-0 box-shadow-pink">
@@ -164,17 +181,33 @@ async function preview() {
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
                           listingTitle.value
                         }</a></h5>
+                        <p class="pb-3">${listingDescription.value}</p>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Bids:</p>
                                 <p class="m-1"><strong>0</strong></p>
                             </div>
                             <div>
-                                <p class="m-1 text-end">Ends at:</p>
-                                <p class="text-success m-1"><strong>00d 00h 00m 00s</strong></p>
+                                <p class="m-1 text-end">Ends in:</p>
+                                <p class="text-success m-1"><strong class="timer">${timeLeft}</strong></p>
                             </div>
                         </div>
                     </div>
                 </div>
   `;
+
+  const timer = document.querySelector(".timer");
+
+  let content = timer.innerHTML;
+  console.log(content);
+
+  let thisTime = content;
+  if (thisTime !== "EXPIRED") {
+    timer.classList.add("not-expired");
+    //console.log(deadline);
+  } else {
+    //console.log(deadline);
+    timer.classList.remove("not-expired");
+    timer.classList.add("expired");
+  }
 }
