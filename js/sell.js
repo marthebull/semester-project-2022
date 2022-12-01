@@ -12,12 +12,12 @@ const listingSubmit = document.getElementById("listing-submit");
 
 // Error message boxes
 const listingErrorMsg = document.getElementById("listing-error-msg");
-const listingDateMsg = document.getElementById("listing-date-msg");
-const listingTimeMsg = document.getElementById("listing-time-msg");
-const listingDescriptionMsg = document.getElementById(
-  "listing-description-msg"
-);
-const listingMainImgMsg = document.getElementById("listing-main-img-msg");
+//const listingDateMsg = document.getElementById("listing-date-msg");
+//const listingTimeMsg = document.getElementById("listing-time-msg");
+//const listingDescriptionMsg = document.getElementById(
+//  "listing-description-msg"
+//);
+//const listingMainImgMsg = document.getElementById("listing-main-img-msg");
 
 // Preview elements
 let previewCont = document.getElementById("preview-cont");
