@@ -46,7 +46,7 @@ const writeListings = (list, outElement) => {
       content.media.length !== 0
         ? `${content.media[0]}`
         : [
-            "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder.jpg?raw=true",
           ];
 
     const profileImg =
