@@ -193,21 +193,17 @@ const writeListing = (listing, outElement) => {
   }
 
   // Canges color og expired og active listings
-  const timer = document.getElementsByClassName("timer");
+  const timer = document.querySelector(".timer");
 
-  for (let i = 0; i < timer.length; i++) {
-    let content = timer[i].innerHTML;
-    //console.log(content);
+  let thisTime = timer.innerHTML;
+  //console.log(content);
 
-    let thisTime = content;
-    if (thisTime !== "EXPIRED") {
-      timer[i].classList.add("not-expired");
-      //console.log(deadline);
-    } else {
-      //console.log(deadline);
-      timer[i].classList.remove("not-expired");
-      timer[i].classList.add("expired");
-    }
+  if (thisTime !== "EXPIRED") {
+    timer.classList.add("not-expired");
+    //console.log(deadline);
+  } else {
+    //console.log(deadline);
+    timer.classList.add("expired");
   }
 
   //profileModal; Writes sellers info into modal

@@ -127,16 +127,14 @@ const writeListings = (list, outElement) => {
   const timer = document.getElementsByClassName("timer");
 
   for (let i = 0; i < timer.length; i++) {
-    let content = timer[i].innerHTML;
+    let thisTime = timer[i].innerHTML;
     //console.log(content);
 
-    let thisTime = content;
     if (thisTime !== "EXPIRED") {
       timer[i].classList.add("not-expired");
       //console.log(deadline);
     } else {
       //console.log(deadline);
-      timer[i].classList.remove("not-expired");
       timer[i].classList.add("expired");
     }
   }
