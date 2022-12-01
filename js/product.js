@@ -17,7 +17,9 @@ const deleteUrl = `${API_BASE_URL}/auction/listings/`;
 const listingCont = document.getElementById("listing-cont");
 const bidsCont = document.getElementById("bids-on-listing");
 const bidsHeader = document.getElementById("bids-header");
+
 const profileModal = document.getElementById("profile-info");
+
 const editTitle = document.getElementById("update-title");
 const editDesc = document.getElementById("update-description");
 const editMedia = document.getElementById("update-main-img");
@@ -198,7 +200,7 @@ const writeListing = (listing, outElement) => {
     // Sends user to login page if not logged in
     //console.log("went to logged out");
     loginToBidBtn.addEventListener("click", function (e) {
-      window.location.href = "../home.html";
+      window.location.href = "../index.html";
       console.log("Klikket på knapp");
     });
   }

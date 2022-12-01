@@ -11,7 +11,7 @@ const listingMainImg = document.getElementById("listing-main-img");
 const listingSubmit = document.getElementById("listing-submit");
 
 // Error message boxes
-const listingTitleMsg = document.getElementById("listing-title-msg");
+const listingErrorMsg = document.getElementById("listing-error-msg");
 const listingDateMsg = document.getElementById("listing-date-msg");
 const listingTimeMsg = document.getElementById("listing-time-msg");
 const listingDescriptionMsg = document.getElementById(
@@ -62,7 +62,9 @@ async function listIt(url, data) {
         `;
       setTimeout(function () {
         window.location.href = "../home.html";
-      }, 2000);
+      }, 1000);
+    } else {
+      listingErrorMsg.innerHTML = answer.errors[0].message;
     }
     console.log(answer);
   } catch (error) {
@@ -96,7 +98,7 @@ function validateAndProcess(event) {
     media: media,
     endsAt: endsAt,
   };
-
+  /*
   let submittedTitle = listingTitle.value.trim();
   console.log(`Title: ${submittedTitle}`);
 
@@ -113,6 +115,7 @@ function validateAndProcess(event) {
   if (submittedDescription.length < 1) {
     listingDescriptionMsg.innerHTML = "Please enter a short description.";
   }
+  */
 
   listIt(sellUrl, listingData);
 }
@@ -181,7 +184,9 @@ async function preview() {
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
                           listingTitle.value
                         }</a></h5>
-                        <p class="pb-3">${listingDescription.value}</p>
+                        <p class="pb-3 desc-text">${
+                          listingDescription.value
+                        }</p>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Bids:</p>

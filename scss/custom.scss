@@ -69,6 +69,13 @@ $btn-font-weight: 600;
     height: 50px;
 }
 
+.desc-text {
+    max-height: 2ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 
 .listing-img {
     border-radius: 0.375rem 0 0 0.375rem;
