@@ -46,13 +46,13 @@ const writeListings = (list, outElement) => {
       content.media.length !== 0
         ? `${content.media[0]}`
         : [
-            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder.jpg?raw=true",
+            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
           ];
 
     const profileImg =
       content.seller.avatar === "" || content.seller.avatar === null
         ? [
-            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/profile-placeholder.jpg?raw=true",
+            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/profile-placeholder-img.jpg?raw=true",
           ]
         : content.seller.avatar;
 

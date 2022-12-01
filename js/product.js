@@ -52,13 +52,13 @@ const writeListing = (listing, outElement) => {
     listing.media.length !== 0
       ? `${listing.media[0]}`
       : [
-          "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+          "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
         ];
 
   const profileImg =
     listing.seller.avatar === "" || listing.seller.avatar === null
       ? [
-          "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg",
+          "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/profile-placeholder-img.jpg?raw=true",
         ]
       : listing.seller.avatar;
 

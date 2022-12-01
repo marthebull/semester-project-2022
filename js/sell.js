@@ -144,7 +144,7 @@ settingDate();
 listingTitle.addEventListener("keyup", preview);
 listingMainImg.addEventListener("keyup", preview);
 listingDescription.addEventListener("keyup", preview);
-listingDate.addEventListener("click", preview);
+listingDate.addEventListener("change", preview);
 
 async function preview() {
   // teste img først og gi den et navn, sende den inn i preview boks og
@@ -175,7 +175,7 @@ async function preview() {
                     <img id="preview-img" src="${
                       listingMainImg.value !== ""
                         ? listingMainImg.value
-                        : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                        : "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true"
                     } " class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
