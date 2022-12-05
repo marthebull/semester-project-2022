@@ -98,26 +98,16 @@ function validateAndProcess(event) {
     media: media,
     endsAt: endsAt,
   };
-  /*
+
   let submittedTitle = listingTitle.value.trim();
   console.log(`Title: ${submittedTitle}`);
 
-  listingTitleMsg.innerHTML = "";
-  if (submittedTitle.length == "") {
-    listingTitleMsg.innerHTML = "Please enter a title.";
-    return false;
+  listingErrorMsg.innerHTML = "";
+  if (submittedTitle.length != "") {
+    listIt(sellUrl, listingData);
+  } else if (submittedTitle.length == "") {
+    listingErrorMsg.innerHTML = "Please enter a title.";
   }
-
-  let submittedDescription = listingDescription.value.trim();
-  console.log(`Description: ${submittedDescription}`);
-
-  listingDescriptionMsg.innerHTML = "";
-  if (submittedDescription.length < 1) {
-    listingDescriptionMsg.innerHTML = "Please enter a short description.";
-  }
-  */
-
-  listIt(sellUrl, listingData);
 }
 
 // setting date in cal to the day after today as default

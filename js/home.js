@@ -164,3 +164,7 @@ function search() {
 
   writeListings(filteredList, outElement);
 }
+
+// Filters list by expiration date 
+
+

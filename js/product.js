@@ -361,10 +361,12 @@ async function updateListing(id) {
   }
 
   console.log(media);
+  console.log(title);
+  console.log(desc);
 
   const data = {
     title: title,
-    body: desc,
+    description: desc,
     media: media,
   };
 
