@@ -147,7 +147,7 @@ settingDate();
 listingTitle.addEventListener("keyup", preview);
 listingMainImg.addEventListener("keyup", preview);
 listingDescription.addEventListener("keyup", preview);
-listingDate.addEventListener("change", preview);
+listingDate.addEventListener("mouseout", preview);
 
 async function preview() {
   // teste img først og gi den et navn, sende den inn i preview boks og
