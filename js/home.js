@@ -1,7 +1,11 @@
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const allListingsEndpoint =
-  "/auction/listings?_seller=true&_bids=true&sort=created&sortOrder=desc";
+  "/auction/listings?_seller=true&_bids=true&sort=created&sortOrder=desc&_active=true";
+
+const allBidsEndpoint =
+  "/auction/listings?_seller=true&_bids=true&sort=endsAt&sortOrder=asc&_active=true";
 const allListingsUrl = `${API_BASE_URL}${allListingsEndpoint}`;
+const allBidsUrl = `${API_BASE_URL}${allBidsEndpoint}`;
 
 const outElement = document.getElementById("listings-feed");
 const searchBar = document.getElementById("search-bar");
@@ -167,6 +171,13 @@ function search() {
 }
 
 // Filters list by expiration date
+
+sortBtn.addEventListener("click", sort);
+
+function sort() {
+  getAllListings(allBidsUrl);
+}
+
 /*
 sortBtn.addEventListener("click", sortByExpiration);
 
