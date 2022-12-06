@@ -140,8 +140,19 @@ listingDescription.addEventListener("keyup", preview);
 listingDate.addEventListener("mouseout", preview);
 
 async function preview() {
-  // teste img først og gi den et navn, sende den inn i preview boks og
-  //sjekke om den er noe eller ikke, enten sette inn den url eller placeholder
+  let submittedMedia = [`${listingMainImg.value.trim()}`];
+
+  // ville sjekke med regex om det var valid url, men den sjekker ikke nok til at det faktisk funker, men funker litt
+  /*let imgPattern = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
+  if (!imgPattern.test(submittedMedia)) {
+    submittedMedia = [
+      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
+    ];
+  } else */ if (submittedMedia[0] === "") {
+    submittedMedia = [
+      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
+    ];
+  }
 
   // sets time
   const date = new Date(listingDate.value).getTime();
@@ -165,18 +176,10 @@ async function preview() {
   previewCont.innerHTML = `
                 <div class="card border-0 box-shadow-pink">
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
-                    <img id="preview-img" src="${
-                      listingMainImg.value !== ""
-                        ? listingMainImg.value
-                        : "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true"
-                    } " class="card-img-top card-img-size" alt="Product picture placeholder"/>
+                    <img id="preview-img" src="${submittedMedia} " class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
-                        <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
-                          listingTitle.value
-                        }</a></h5>
-                        <p class="pb-3 desc-text">${
-                          listingDescription.value
-                        }</p>
+                        <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${listingTitle.value}</a></h5>
+                        <p class="pb-3 desc-text">${listingDescription.value}</p>
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Bids:</p>

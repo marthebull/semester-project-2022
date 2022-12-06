@@ -5,6 +5,7 @@ const allListingsUrl = `${API_BASE_URL}${allListingsEndpoint}`;
 
 const outElement = document.getElementById("listings-feed");
 const searchBar = document.getElementById("search-bar");
+const sortBtn = document.getElementById("sort-ending-soon");
 
 //console.log(postCollection);
 
@@ -165,6 +166,22 @@ function search() {
   writeListings(filteredList, outElement);
 }
 
-// Filters list by expiration date 
+// Filters list by expiration date
+/*
+sortBtn.addEventListener("click", sortByExpiration);
 
+function sortByExpiration(a, b) {
+  const endingSoon = listingsCollection.filter((listing) => {
+    console.log(listing.title);
 
+    if (a.expires < b.expires) {
+      return -1;
+    }
+    if (a.expires > b.expires) {
+      return 1;
+    }
+    return 0;
+  });
+
+  writeListings(endingSoon, outElement);
+}*/
