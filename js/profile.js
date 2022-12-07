@@ -205,9 +205,9 @@ const writeBids = (list, outElement) => {
                 </div>
             </div>
             `;
-  }
 
-  outElement.innerHTML = newDivs;
+    outElement.innerHTML = newDivs;
+  }
 
   // Canges color og expired og active listings
   const timer = document.getElementsByClassName("timer");

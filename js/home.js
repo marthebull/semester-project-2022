@@ -30,6 +30,7 @@ async function getAllListings(url) {
 
     const response = await fetch(url, options);
     //console.log(response);
+
     const listings = await response.json();
     console.log(listings);
     listingsCollection = listings;
@@ -63,7 +64,19 @@ function sortAll() {
     getAllListings(allListingsUrl);
   }
 }
-
+/*
+function sorry() {
+  outElement.innerHTML = `
+            <div class="mx-auto pb-4 col-22">
+                <div class="border-0 box-shadow-pink bg-white rounded p-5 text-center">
+                    <h1 class="knewave text-primary mb-5">429 - SORRY</h1>
+                    <p>We are experiencing a lot of trafic on this page.</p>
+                    <p>Refresh the page in a few seconds.</p>
+                </div>
+            </div>
+    `;
+}
+*/
 // Writes all listings to outElement
 const writeListings = (list, outElement) => {
   outElement.innerHTML = "";
