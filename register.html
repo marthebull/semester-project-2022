@@ -13,8 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Montserrat:wght@400;600;700&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e6e3ac140.js" crossorigin="anonymous"></script>
-    <script defer type="module" src="./js/main.js"></script>
-    <script defer type="module" src="./js/register.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
@@ -49,7 +47,7 @@
                 class="bg-white col-12 col-md-6 p-5 d-flex flex-column justify-content-center box-shadow-pink rounded col mx-auto mx-md-0 mb-5">
                 <h1 class="smaller text-center mb-4 pt-4">Register to become a <span class="knewave">highestbidder</span></h1>
                 <p id="error-msg" class="text-center text-danger mb-0"></p>
-                <form id="reg-form" action="" class="d-flex flex-column justify-content-center">
+                <form id="reg-form" action="./index.html" class="d-flex flex-column justify-content-center">
                     <p class="text-danger justify-content-start" id="reg-username-msg"></p>
                     <input id="reg-username" type="text" class="form-control bg-light border-0 mb-3" placeholder="Username">
                     <p class="text-danger justify-content-start" id="reg-email-msg"></p>
@@ -82,5 +80,7 @@
             <p class="m-1">2022 | Copyright highestbidder</p>
         </div>
     </footer>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/register.js"></script>
 </body>
 </html>
