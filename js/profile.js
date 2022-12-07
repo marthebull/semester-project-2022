@@ -124,7 +124,7 @@ const writeListings = (list, outElement) => {
                         <p class="m-1 desc-text">${listing.description}</p>
                         <div class="d-flex justify-content-between pt-3 mb-3">
                             <div>
-                                <p class="m-1">Bids:</p>
+                                <p class="m-1">Bid count:</p>
                                 <p class="m-1"><strong>${listing._count.bids}</strong></p>
                             </div>
                             <div>
