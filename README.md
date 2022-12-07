@@ -25,20 +25,32 @@ Links:
 
 ---
 
-HUSK!!
+Report:
 
-- minimize css for production code
-- hva må en installere på en ny maskin for at det skal funke der?
-- lage moduler??
+I will be using bootstrap as CSS-framework for this project.
+In order to clone this code and make it work you should run `npm install bootstrap@latest` vscode terminal.
+
+For usertesting ive used the given userstories for the assignment and added a few to test functionality:
+
+- Brukeren kan bla gjennom og se på produkter uten å være logget inn.
+- Brukeren kan søke på produkter eller sortere på “latest first” eller “ending soon”.
+- Brukeren kan registrere seg på siden.
+- Brukeren kan logge inn på siden.
+- Hvis noe ikke fungerer får brukeren tilbakemelding på dette ved feilmeldinger som forklarer feilen.
+- Brukeren som er logget inn kan se profilen sin, sine listings og listings de selv har bydd på.
+- Brukeren kan oppdatere profilbildet sitt.
+- Brukeren kan se sin totale credit-saldo.
+- Brukeren kan opprette og legge ut en ny listing med tittel, deadline, beskrivelse og bilde og få en preview av listingen før den legges ut.
+- Brukeren kan oppdatere sin egen listing.
+- Brukeren kan slette sin egen listing.
+- Brukeren kan by på en annens listing.
+- Brukeren kan se andres/alle bud på en listing.
+- Brukeren kan se høyeste bud på en listing.
+- Når brukeren byr på en annens listing påvirkes credit-saldoen.
+- Brukeren kan logge ut.
 
 ---
 
-Report:
-
-I will be using bootstrap as CSS framework for this project.
-
-Sources:
+Resources:
 
 Navbar code for bootstrap: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-navbar.php
-
-Countdown for timer: https://www.w3schools.com/howto/howto_js_countdown.asp
