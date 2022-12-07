@@ -154,7 +154,7 @@ const writeListing = (listing, outElement) => {
       editTitle.innerHTML = `${listing.title}`;
       editDesc.innerHTML = `${listing.description}`;
       editMedia.innerHTML = `${listing.media}`;
-      console.log(listing.title, listing.description, listing.media);
+      //console.log(listing.title, listing.description, listing.media);
     });
   } else if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
     bidOrLogin.innerHTML = `
@@ -169,11 +169,10 @@ const writeListing = (listing, outElement) => {
         <p class="mb-0 text-danger pb-3">This listing has expired</p>
         <button id="bid-expired" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Browse other listings</button>
                     `;
-    console.log("went to expired");
+    //console.log("went to expired");
     const expiredListingBtn = document.getElementById("bid-expired");
     expiredListingBtn.addEventListener("click", function (e) {
       window.location.href = "../home.html";
-      console.log("Klikket på knapp");
     });
   } else {
     bidOrLogin.innerHTML = `
@@ -182,7 +181,6 @@ const writeListing = (listing, outElement) => {
     const loginToBidBtn = document.getElementById("login-to-bid");
     loginToBidBtn.addEventListener("click", function (e) {
       window.location.href = "../index.html";
-      console.log("Klikket på knapp");
     });
   }
 
@@ -214,7 +212,6 @@ const writeBids = (bids, outElement) => {
   bids.bids.reverse();
 
   const bidCount = bids._count.bids;
-  console.log(bidCount);
 
   for (let i = 0; i < bids.bids.length; i++) {
     let biddersName = bids.bids[i].bidderName;
@@ -328,10 +325,6 @@ async function updateListing(id) {
       "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
     ];
   }
-
-  console.log(media);
-  console.log(title);
-  console.log(desc);
 
   const data = {
     title: title,

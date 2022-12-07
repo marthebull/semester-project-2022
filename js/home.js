@@ -31,7 +31,7 @@ async function getAllListings(url) {
     //console.log(response);
 
     const listings = await response.json();
-    console.log(listings);
+    //console.log(listings);
     listingsCollection = listings;
     writeListings(listings, outElement);
   } catch (error) {
@@ -44,7 +44,7 @@ getAllListings(allListingsUrl);
 endingRadio.addEventListener("change", sortEnding);
 function sortEnding() {
   if (endingRadio.checked == true) {
-    console.log(endingRadio.value);
+    //console.log(endingRadio.value);
     allRadio.checked = false;
     getAllListings(allBidsUrl);
   }
@@ -54,7 +54,7 @@ function sortEnding() {
 allRadio.addEventListener("change", sortAll);
 function sortAll() {
   if (allRadio.checked == true) {
-    console.log(allRadio.value);
+    //console.log(allRadio.value);
     endingRadio.checked = false;
     getAllListings(allListingsUrl);
   }

@@ -76,10 +76,10 @@ function validateAndProcess(event) {
     ];
   }
 
-  console.log(media);
+  //console.log(media);
 
   const bidEnds = listingDate.value.trim();
-  console.log(bidEnds);
+  //console.log(bidEnds);
   const endsAt = `${bidEnds}:00.000Z`;
 
   let listingData = {
@@ -90,7 +90,7 @@ function validateAndProcess(event) {
   };
 
   let submittedTitle = listingTitle.value.trim();
-  console.log(`Title: ${submittedTitle}`);
+  //console.log(`Title: ${submittedTitle}`);
 
   listingErrorMsg.innerHTML = "";
   if (submittedTitle.length != "") {
@@ -179,7 +179,7 @@ async function preview() {
   const timer = document.querySelector(".timer");
 
   let content = timer.innerHTML;
-  console.log(content);
+  //console.log(content);
 
   let thisTime = content;
   if (thisTime !== "EXPIRED") {

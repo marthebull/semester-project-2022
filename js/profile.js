@@ -58,7 +58,7 @@ const writeListings = (list, outElement) => {
         : [
             "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
           ];
-    console.log(listing);
+    //console.log(listing);
 
     // sets time
     const date = new Date(listing.endsAt).getTime();
@@ -162,7 +162,7 @@ const writeBids = (list, outElement) => {
         : [
             "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
           ];
-    console.log(listing);
+    //console.log(listing);
 
     // sets time
     const date = new Date(listing.listing.endsAt).getTime();
@@ -290,7 +290,7 @@ async function updateAvatar(url, data) {
     const response = await fetch(url, options);
     //console.log(response);
     const answer = await response.json();
-    console.log(answer);
+    //console.log(answer);
     if (answer.statusCode) {
       updateAvatarMsg.innerHTML =
         "Invalid image URL. Your URL should match this pattern : https://url.com/image.jpg";
