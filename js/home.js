@@ -35,6 +35,9 @@ async function getAllListings(url) {
     listingsCollection = listings;
     writeListings(listings, outElement);
   } catch (error) {
+    if (error) {
+      outElement.innerHTML = `<p class="text-center mx-auto">Something went wrong! Please try again in a few seconds &#128517</p>`;
+    }
     console.warn(error);
   }
 }

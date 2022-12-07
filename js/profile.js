@@ -44,6 +44,9 @@ async function getListings(url) {
     //console.log(listings);
     writeListings(listings, listingsOutput);
   } catch (error) {
+    if (error) {
+      listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">Something went wrong! Please try again in a few seconds &#128517</p>`;
+    }
     console.warn(error);
   }
 }
@@ -182,6 +185,9 @@ async function getBids(url) {
     //console.log(listings);
     writeBids(listings, listingsOutput);
   } catch (error) {
+    if (error) {
+      listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">Something went wrong! Please try again in a few seconds &#128517</p>`;
+    }
     console.warn(error);
   }
 }
@@ -286,6 +292,9 @@ async function getProfile(url) {
     //console.log(profile);
     writeProfileInfo(profile, profileInfoOutput);
   } catch (error) {
+    if (error) {
+      listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">Something went wrong! Please try again in a few seconds &#128517</p>`;
+    }
     console.warn(error);
   }
 }
