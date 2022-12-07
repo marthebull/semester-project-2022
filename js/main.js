@@ -1,8 +1,12 @@
 import { toTopBtn, backToTop } from "./to-top.js";
 
-// Display/hide things when logged in/logged out
+// Gets urls needed
+const API_BASE_URL = `https://api.noroff.dev/api/v1`;
+const userName = localStorage.getItem("username");
+const profileEndpoint = `/auction/profiles/${userName}`;
+const profileUrl = `${API_BASE_URL}${profileEndpoint}`;
 
-// sign in/log out nav-menu
+// Display/hide things when logged in/logged out
 function hideOut() {
   const loggedIn = localStorage.getItem("accessToken");
   if (!loggedIn) {
@@ -12,7 +16,6 @@ function hideOut() {
     }
   }
 }
-
 hideOut();
 
 function hideIn() {
@@ -24,15 +27,9 @@ function hideIn() {
     }
   }
 }
-
 hideIn();
 
-// Credits amount
-const API_BASE_URL = `https://api.noroff.dev/api/v1`;
-const userName = localStorage.getItem("username");
-const profileEndpoint = `/auction/profiles/${userName}`;
-const profileUrl = `${API_BASE_URL}${profileEndpoint}`;
-
+// Gets and displayes credits amount if signed in
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -44,7 +41,6 @@ async function getProfile(url) {
       },
     };
     //console.log(url, options);
-
     const response = await fetch(url, options);
     //console.log(response);
     const profile = await response.json();
@@ -61,6 +57,4 @@ async function getProfile(url) {
     console.warn(error);
   }
 }
-
-// Henter all profilinfo
 getProfile(profileUrl);

@@ -1,30 +1,22 @@
+// Gets urls needed
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const sellEndpoint = "/auction/listings";
 const sellUrl = `${API_BASE_URL}${sellEndpoint}`;
 
-// Input fields and submit button
+// Gets elements needed
 const listingTitle = document.getElementById("listing-title");
 const listingDate = document.getElementById("listing-date");
-//const listingTime = document.getElementById("listing-time");
 const listingDescription = document.getElementById("listing-description");
 const listingMainImg = document.getElementById("listing-main-img");
 const listingSubmit = document.getElementById("listing-submit");
 
-// Error message boxes
 const listingErrorMsg = document.getElementById("listing-error-msg");
-//const listingDateMsg = document.getElementById("listing-date-msg");
-//const listingTimeMsg = document.getElementById("listing-time-msg");
-//const listingDescriptionMsg = document.getElementById(
-//  "listing-description-msg"
-//);
-//const listingMainImgMsg = document.getElementById("listing-main-img-msg");
 
-// Preview elements
 let previewCont = document.getElementById("preview-cont");
 const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
 
-// Checking if user is logged in
+// Checking if user is logged in, feecback if not
 function isLoggedin() {
   const accessToken = localStorage.getItem("accessToken");
   if (!accessToken) {
@@ -35,11 +27,10 @@ function isLoggedin() {
 
 isLoggedin();
 
-// Creates new listing
+// Posts listing info to API
 async function listIt(url, data) {
   try {
     const accessToken = localStorage.getItem("accessToken");
-
     //console.log(accessToken);
     const options = {
       method: "POST",
@@ -53,10 +44,9 @@ async function listIt(url, data) {
     const response = await fetch(url, options);
     //console.log(response);
     const answer = await response.json();
-    console.log(answer);
+    //console.log(answer);
     if (answer.id) {
       previewCont.innerHTML = "";
-
       previewCont.innerHTML = `
         <h1 class="text-center mx-auto pt-4 knewave text-primary">Its been listed!</h1>
         `;
@@ -66,7 +56,7 @@ async function listIt(url, data) {
     } else {
       listingErrorMsg.innerHTML = answer.errors[0].message;
     }
-    console.log(answer);
+    //console.log(answer);
   } catch (error) {
     console.warn(error);
   }
@@ -110,7 +100,7 @@ function validateAndProcess(event) {
   }
 }
 
-// setting date in cal to the day after today as default
+// Setting date in calendar to now by default
 function settingDate() {
   var date = new Date();
 
@@ -119,7 +109,7 @@ function settingDate() {
   var day = date.getDate();
   var month = date.getMonth() + 1;
   var year = date.getFullYear();
-  console.log(date);
+  //console.log(date);
 
   if (month < 10) month = "0" + month;
   if (day < 10) day = "0" + day;
@@ -127,13 +117,13 @@ function settingDate() {
   if (minutes < 10) minutes = "0" + minutes;
 
   var today = year + "-" + month + "-" + day + "T" + hours + ":" + minutes;
-  console.log(today);
+  //console.log(today);
   listingDate.value = today;
-  console.log(listingDate.value);
+  //console.log(listingDate.value);
 }
 settingDate();
 
-// show preview
+// Showes preview of listing while making it
 listingTitle.addEventListener("keyup", preview);
 listingMainImg.addEventListener("keyup", preview);
 listingDescription.addEventListener("keyup", preview);
@@ -141,14 +131,7 @@ listingDate.addEventListener("mouseout", preview);
 
 async function preview() {
   let submittedMedia = [`${listingMainImg.value.trim()}`];
-
-  // ville sjekke med regex om det var valid url, men den sjekker ikke nok til at det faktisk funker, men funker litt
-  /*let imgPattern = /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i;
-  if (!imgPattern.test(submittedMedia)) {
-    submittedMedia = [
-      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
-    ];
-  } else */ if (submittedMedia[0] === "") {
+  if (submittedMedia[0] === "") {
     submittedMedia = [
       "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
     ];
@@ -163,7 +146,6 @@ async function preview() {
     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   let timeLeft = "";
 

@@ -1,4 +1,4 @@
-// APi urls
+// Gets urls needed
 const API_BASE_URL = `https://api.noroff.dev/api/v1`;
 const userName = localStorage.getItem("username");
 const profileEndpoint = `/auction/profiles/${userName}?_listings=true`;
@@ -8,7 +8,7 @@ const profileListingsUrl = `${API_BASE_URL}/auction/profiles/${userName}/listing
 const profileBidsUrl = `${API_BASE_URL}/auction/profiles/${userName}/bids?_listings=true`;
 const updateAvatarUrl = `${API_BASE_URL}/auction/profiles/${userName}/media`;
 
-// getting elements
+// Gets elements needed
 const listingsOutput = document.getElementById("listings-output");
 const bidsOutput = document.getElementById("bids-output");
 const profileImg = document.getElementsByClassName("profile-img");
@@ -18,6 +18,7 @@ const updateAvatarMsg = document.getElementById("update-avatar-msg");
 const newAvatarInput = document.getElementById("new-avatar");
 const saveNewAvatarBtn = document.getElementById("save-new-avatar");
 
+// Gets listings from API
 async function getListings(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -33,11 +34,10 @@ async function getListings(url) {
       },
     };
     //console.log(url, options);
-
     const response = await fetch(url, options);
     //console.log(response);
     const listings = await response.json();
-    console.log(listings);
+    //console.log(listings);
     writeListings(listings, listingsOutput);
   } catch (error) {
     console.warn(error);
@@ -69,7 +69,6 @@ const writeListings = (list, outElement) => {
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     let timeLeft = "";
 
@@ -104,7 +103,7 @@ const writeListings = (list, outElement) => {
 
   outElement.innerHTML = newDivs;
 
-  // Canges color og expired og active listings
+  // Canges color on expired and active listings
   const timer = document.getElementsByClassName("timer");
 
   for (let i = 0; i < timer.length; i++) {
@@ -143,15 +142,15 @@ async function getBids(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const listings = await response.json();
-    console.log(listings);
+    //console.log(listings);
     writeBids(listings, bidsOutput);
   } catch (error) {
     console.warn(error);
   }
 }
-
 getBids(profileBidsUrl);
 
+// Writes out all listings the user has bid on
 const writeBids = (list, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
@@ -209,7 +208,7 @@ const writeBids = (list, outElement) => {
     outElement.innerHTML = newDivs;
   }
 
-  // Canges color og expired og active listings
+  // Canges color on expired and active listings
   const timer = document.getElementsByClassName("timer");
 
   for (let i = 0; i < timer.length; i++) {
@@ -228,7 +227,7 @@ const writeBids = (list, outElement) => {
   }
 };
 
-// getting profile info
+// Gets profile info
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -247,16 +246,15 @@ async function getProfile(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const profile = await response.json();
-    console.log(profile);
+    //console.log(profile);
     writeProfileInfo(profile, profileInfoOutput);
   } catch (error) {
     console.warn(error);
   }
 }
-
 getProfile(profileUrl);
 
-// Writes all profile info outElement
+// Writes all profile info to outelement
 const writeProfileInfo = (profile, outElement) => {
   outElement.innerHTML = "";
 
@@ -289,7 +287,6 @@ async function updateAvatar(url, data) {
       body: JSON.stringify(data),
     };
     //console.log(url, data, options);
-    // opp i api
     const response = await fetch(url, options);
     //console.log(response);
     const answer = await response.json();
@@ -298,17 +295,16 @@ async function updateAvatar(url, data) {
       updateAvatarMsg.innerHTML =
         "Invalid image URL. Your URL should match this pattern : https://url.com/image.jpg";
     }
-
     if (answer.name) {
       window.location.reload();
     }
-
     //console.log(answer);
   } catch (error) {
     console.warn(error);
   }
 }
 
+// Adds eventlistener and prosesses user input to update avatar
 saveNewAvatarBtn.addEventListener("click", newAvatar);
 function newAvatar(event) {
   event.preventDefault();

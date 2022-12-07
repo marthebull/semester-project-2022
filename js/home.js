@@ -1,21 +1,20 @@
+// Gets urls needed
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const allListingsEndpoint =
   "/auction/listings?_seller=true&_bids=true&sort=created&sortOrder=desc&_active=true";
-
 const allBidsEndpoint =
   "/auction/listings?_seller=true&_bids=true&sort=endsAt&sortOrder=asc&_active=true";
 const allListingsUrl = `${API_BASE_URL}${allListingsEndpoint}`;
 const allBidsUrl = `${API_BASE_URL}${allBidsEndpoint}`;
-
 const outElement = document.getElementById("listings-feed");
 const searchBar = document.getElementById("search-bar");
 const allRadio = document.getElementById("sort-all");
 const endingRadio = document.getElementById("sort-ending");
 
-//console.log(postCollection);
-
+// Empty array to put all listings in so it can be sorted in different ways
 let listingsCollection = [];
 
+// Gets all listings
 async function getAllListings(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -39,13 +38,10 @@ async function getAllListings(url) {
     console.warn(error);
   }
 }
-
-// Gets all listings
 getAllListings(allListingsUrl);
 
-// Filters list by expiration date
+// Filters listings by nearest expiration date
 endingRadio.addEventListener("change", sortEnding);
-
 function sortEnding() {
   if (endingRadio.checked == true) {
     console.log(endingRadio.value);
@@ -54,9 +50,8 @@ function sortEnding() {
   }
 }
 
-// Shows all active listings again
+// Removes filter, showes all active listings, newest first
 allRadio.addEventListener("change", sortAll);
-
 function sortAll() {
   if (allRadio.checked == true) {
     console.log(allRadio.value);
@@ -64,20 +59,8 @@ function sortAll() {
     getAllListings(allListingsUrl);
   }
 }
-/*
-function sorry() {
-  outElement.innerHTML = `
-            <div class="mx-auto pb-4 col-22">
-                <div class="border-0 box-shadow-pink bg-white rounded p-5 text-center">
-                    <h1 class="knewave text-primary mb-5">429 - SORRY</h1>
-                    <p>We are experiencing a lot of trafic on this page.</p>
-                    <p>Refresh the page in a few seconds.</p>
-                </div>
-            </div>
-    `;
-}
-*/
-// Writes all listings to outElement
+
+// Writes all listings to output element
 const writeListings = (list, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
@@ -97,7 +80,7 @@ const writeListings = (list, outElement) => {
           ]
         : content.seller.avatar;
 
-    // sets time
+    // Sets time
     const date = new Date(content.endsAt).getTime();
     const now = new Date().getTime();
     const distance = date - now;
@@ -106,7 +89,6 @@ const writeListings = (list, outElement) => {
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     let timeLeft = "";
 
@@ -116,10 +98,9 @@ const writeListings = (list, outElement) => {
       timeLeft = "EXPIRED";
     }
 
-    // highest bid
+    // Finds and displayes highest bid
     const allbids = content.bids;
     let highest = 0;
-    //console.log(allbids);
 
     function findHighestBid(allbids) {
       if (allbids.length !== 0) {
@@ -128,7 +109,6 @@ const writeListings = (list, outElement) => {
           .reduce(function (a, b) {
             return Math.max(a, b);
           });
-        //console.log(highest);
       }
     }
     findHighestBid(allbids);
@@ -165,12 +145,10 @@ const writeListings = (list, outElement) => {
 
   outElement.innerHTML = newDivs;
 
-  // Canges color og expired og active listings
+  // Canges color on expired and active listings
   const timer = document.getElementsByClassName("timer");
-
   for (let i = 0; i < timer.length; i++) {
     let thisTime = timer[i].innerHTML;
-    //console.log(content);
 
     if (thisTime !== "EXPIRED") {
       timer[i].classList.add("not-expired");
@@ -182,15 +160,15 @@ const writeListings = (list, outElement) => {
   }
 };
 
-// Search by title, description, tags
+// Search by username and title
 searchBar.addEventListener("keyup", search);
 
 function search() {
   const filterQuery = searchBar.value.toLowerCase();
-  console.log(filterQuery);
+  //console.log(filterQuery);
 
   const filteredList = listingsCollection.filter((listing) => {
-    //console.log(listing.title);
+    //console.log(listing.title, listing.description);
 
     //console.log(listingsCollection.length);
     const listingTitle = listing.title.toLowerCase();
@@ -202,6 +180,5 @@ function search() {
 
     return false;
   });
-
   writeListings(filteredList, outElement);
 }

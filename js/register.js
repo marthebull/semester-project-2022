@@ -1,3 +1,4 @@
+// Gets urls needed
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const regEndpoint = "/auction/auth/register";
 const registerUrl = `${API_BASE_URL}${regEndpoint}`;
@@ -23,7 +24,7 @@ function validateForm(e) {
   e.preventDefault();
 
   let submittedUsername = usernameInput.value.trim();
-  console.log(`Username: ${submittedUsername}`);
+  //console.log(`Username: ${submittedUsername}`);
   usernameMsg.innerHTML = "";
   if (submittedUsername.length < 5) {
     usernameMsg.innerHTML = "Username must be at least 5 characters long.";
@@ -35,7 +36,7 @@ function validateForm(e) {
   }
 
   let submittedEmail = emailInput.value.trim();
-  console.log(`Email: ${submittedEmail}`);
+  //console.log(`Email: ${submittedEmail}`);
   emailMsg.innerHTML = "";
   let emailPattern = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   if (!emailPattern.test(submittedEmail)) {
@@ -52,14 +53,14 @@ function validateForm(e) {
   }
 
   let submittedPassword = passwordInput.value.trim();
-  console.log(`Password: ${submittedPassword}`);
+  //console.log(`Password: ${submittedPassword}`);
   passwordMsg.innerHTML = "";
   if (submittedPassword.length < 8) {
     passwordMsg.innerHTML = "Password must be at least 8 characters long.";
   }
 
   let submittedAvatar = avatarInput.value.trim();
-  console.log(`Avatar URL: ${submittedAvatar}`);
+  //console.log(`Avatar URL: ${submittedAvatar}`);
   avatarMsg.innerHTML = "";
   let avatarPattern = /\.(jpeg|jpg|gif|png|svg)$/;
   if (submittedAvatar.value == "") {
@@ -106,9 +107,9 @@ async function registerUSer(url, userData) {
     };
 
     const response = await fetch(registerUrl, postData);
-    console.log(response);
+    //console.log(response);
     const json = await response.json();
-    console.log(json);
+    //console.log(json);
 
     if (response.status === 201) {
       window.location = "./index.html";

@@ -1,12 +1,10 @@
-// get the query string
+// Get id from query string
 const queryString = document.location.search;
-// create an object that will allows us to access all the query string parameters
 const params = new URLSearchParams(queryString);
-// get the id parameter from the query string
-const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const id = params.get("id");
-//console.log(id);
 
+// Gets urls needed
+const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const viewListingEndpoint = `/auction/listings/${id}`;
 const listingUrl = `${API_BASE_URL}${viewListingEndpoint}?_seller=true&_bids=true`;
 const makeBidUrl = `${API_BASE_URL}${viewListingEndpoint}/bids`;
@@ -24,7 +22,7 @@ const editTitle = document.getElementById("update-title");
 const editDesc = document.getElementById("update-description");
 const editMedia = document.getElementById("update-main-img");
 
-// Gets listing by id
+// Gets listing by id from API
 async function getListing(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -39,15 +37,13 @@ async function getListing(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const listing = await response.json();
-    console.log(listing);
+    //console.log(listing);
     writeListing(listing, listingCont);
     writeBids(listing, bidsCont);
   } catch (error) {
     console.warn(error);
   }
 }
-
-// Calls function who gets listinginfo
 getListing(listingUrl);
 
 // Writes listing info to output element
@@ -68,9 +64,7 @@ const writeListing = (listing, outElement) => {
         ]
       : listing.seller.avatar;
 
-  //const description = listing.description !== null ? listing.description : "";
-
-  // sets time
+  // Sets time
   const date = new Date(listing.endsAt).getTime();
   const now = new Date().getTime();
   const distance = date - now;
@@ -79,7 +73,6 @@ const writeListing = (listing, outElement) => {
     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  //const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   let timeLeft = "";
 
@@ -89,10 +82,9 @@ const writeListing = (listing, outElement) => {
     timeLeft = "EXPIRED";
   }
 
-  // highest bid
+  // Gets and displayes the highest bid
   const allbids = listing.bids;
   let highest = 0;
-  //console.log(allbids);
 
   function findHighestBid(allbids) {
     if (allbids.length !== 0) {
@@ -101,7 +93,6 @@ const writeListing = (listing, outElement) => {
         .reduce(function (a, b) {
           return Math.max(a, b);
         });
-      //console.log(highest);
     }
   }
   findHighestBid(allbids);
@@ -141,8 +132,8 @@ const writeListing = (listing, outElement) => {
             </div>
             `;
 
+  // Checks if it is the users own listing, if the user is logged in or the listing has expired and displayes different buttons based on that
   const bidOrLogin = document.getElementById("bid-or-login");
-
   if (
     localStorage.getItem("accessToken") &&
     localStorage.getItem("username") === listing.seller.name
@@ -153,14 +144,11 @@ const writeListing = (listing, outElement) => {
                     <button id="delete-btn" type="button" class="btn btn-danger text-white mx-auto text-center mb-4 col-12 hide-out">Delete listing</button>
                     `;
     const deleteBtn = document.getElementById("delete-btn");
-    //console.log(deleteBtns);
     deleteBtn.addEventListener("click", () => {
-      //console.log(btnDelete.getAttribute("data-delete"));
       if (confirm("Are you sure you want to delete this listing?")) {
         deletePost(listing.id);
       }
     });
-
     const editBtn = document.getElementById("update-btn");
     editBtn.addEventListener("click", () => {
       editTitle.innerHTML = `${listing.title}`;
@@ -168,17 +156,13 @@ const writeListing = (listing, outElement) => {
       editMedia.innerHTML = `${listing.media}`;
       console.log(listing.title, listing.description, listing.media);
     });
-  }
-  // Checks if logged in or not, display login btn or bid btn
-  else if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
+  } else if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
     bidOrLogin.innerHTML = `
         <input id="place-bid-input" type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
         <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center mb-3 col-12 hide-out">Place bid</button>
                     `;
     const sendBidBtn = document.getElementById("send-bid-btn");
     sendBidBtn.addEventListener("click", validateAndProcess);
-
-    //console.log(timeLeft);
   } else if (localStorage.getItem("accessToken") && timeLeft === "EXPIRED") {
     bidOrLogin.innerHTML = "";
     bidOrLogin.innerHTML = `
@@ -187,7 +171,6 @@ const writeListing = (listing, outElement) => {
                     `;
     console.log("went to expired");
     const expiredListingBtn = document.getElementById("bid-expired");
-    // Sends user to home page to browser other listings
     expiredListingBtn.addEventListener("click", function (e) {
       window.location.href = "../home.html";
       console.log("Klikket på knapp");
@@ -197,29 +180,24 @@ const writeListing = (listing, outElement) => {
         <button id="login-to-bid" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Log in to place bid</button>
                     `;
     const loginToBidBtn = document.getElementById("login-to-bid");
-    // Sends user to login page if not logged in
-    //console.log("went to logged out");
     loginToBidBtn.addEventListener("click", function (e) {
       window.location.href = "../index.html";
       console.log("Klikket på knapp");
     });
   }
 
-  // Canges color og expired og active listings
+  // Canges color on expired and active listings
   const timer = document.querySelector(".timer");
 
   let thisTime = timer.innerHTML;
-  //console.log(content);
 
   if (thisTime !== "EXPIRED") {
     timer.classList.add("not-expired");
-    //console.log(deadline);
   } else {
-    //console.log(deadline);
     timer.classList.add("expired");
   }
 
-  //profileModal; Writes sellers info into modal
+  // Writes the sellers info into modal
   profileModal.innerHTML = `
             <img class="mx-auto rounded-circle profile-img mb-4" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
             <p class="text-center"><strong>@${listing.seller.name}</strong></p>
@@ -229,7 +207,7 @@ const writeListing = (listing, outElement) => {
   `;
 };
 
-// list all bids
+// List all bids
 const writeBids = (bids, outElement) => {
   outElement.innerHTML = "";
   let newDivs = "";
@@ -239,12 +217,9 @@ const writeBids = (bids, outElement) => {
   console.log(bidCount);
 
   for (let i = 0; i < bids.bids.length; i++) {
-    //console.log(bids.bids[i].bidderName, bids.bids[i].amount, bids.bids[i].created);
-
     let biddersName = bids.bids[i].bidderName;
     let bidAmount = bids.bids[i].amount;
     let biddingDate = new Date(bids.bids[i].created);
-    //console.log(biddingDate);
 
     let displaydate = biddingDate.toLocaleString("default", {
       day: "2-digit",
@@ -253,7 +228,6 @@ const writeBids = (bids, outElement) => {
       hour: "2-digit",
       minute: "numeric",
     });
-    //console.log(displaydate);
 
     let credits = bids.bids[i].amount <= 1 ? "credit" : "credits";
 
@@ -271,7 +245,6 @@ const writeBids = (bids, outElement) => {
             </div>
             `;
   }
-
   outElement.innerHTML = newDivs;
 
   if (bids.bids.length > 0) {
@@ -279,11 +252,10 @@ const writeBids = (bids, outElement) => {
   }
 };
 
-// Make bid
+// Send bid info to API
 async function makeBid(url, data) {
   try {
     const accessToken = localStorage.getItem("accessToken");
-    //console.log(accessToken);
     const options = {
       method: "POST",
       headers: {
@@ -294,7 +266,7 @@ async function makeBid(url, data) {
     };
     //console.log(url, data, options);
     const response = await fetch(url, options);
-    console.log(response);
+    //console.log(response);
     const answer = await response.json();
     const bidError = document.getElementById("bid-error-msg");
     if (response.status === 200) {
@@ -302,18 +274,17 @@ async function makeBid(url, data) {
     } else {
       bidError.innerHTML = answer.errors[0].message;
     }
-    console.log(answer);
+    //console.log(answer);
   } catch (error) {
     console.warn(error);
   }
 }
 
-// Prosesses and validates bid input
+// Prosesses bid input
 function validateAndProcess(event) {
   event.preventDefault();
   const bidInput = document.getElementById("place-bid-input").value.trim();
   const bidToSend = parseInt(bidInput);
-  console.log(bidToSend);
 
   let postData = {
     amount: bidToSend,
@@ -322,9 +293,8 @@ function validateAndProcess(event) {
   makeBid(makeBidUrl, postData);
 }
 
-// deletes listing
+// Deletes listing
 async function deletePost(id) {
-  //console.log(id);
   const url = `${deleteUrl}${id}`;
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -335,9 +305,9 @@ async function deletePost(id) {
         Authorization: `Bearer ${accessToken}`,
       },
     };
-    console.log(url, options);
+    //console.log(url, options);
     const response = await fetch(url, options);
-    console.log(response);
+    //console.log(response);
 
     if (response.status == 204) {
       window.location = "../home.html";
@@ -347,8 +317,7 @@ async function deletePost(id) {
   }
 }
 
-// Update modal
-
+// Update listing modal
 async function updateListing(id) {
   const title = editTitle.value.trim();
   const desc = editDesc.value.trim();
@@ -385,9 +354,9 @@ async function updateListing(id) {
     //console.log(url, options);
 
     const response = await fetch(url, options);
-    console.log(response);
+    //console.log(response);
     const updateAnswer = await response.json();
-    console.log(updateAnswer);
+    // console.log(updateAnswer);
 
     const updateError = document.getElementById("update-error-msg");
     if (response.status === 200) {
@@ -396,7 +365,7 @@ async function updateListing(id) {
       updateError.innerHTML = updateAnswer.errors[0].message;
     }
   } catch (error) {
-    //console.warn(error);
+    console.warn(error);
   }
 }
 

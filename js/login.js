@@ -1,3 +1,4 @@
+// Gets urls needed
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const loginEndpoint = "/auction/auth/login";
 const loginUrl = `${API_BASE_URL}${loginEndpoint}`;
@@ -19,7 +20,7 @@ function validateForm(e) {
   e.preventDefault();
 
   let submittedEmail = emailInput.value.trim();
-  console.log(`Email: ${submittedEmail}`);
+  //console.log(`Email: ${submittedEmail}`);
   emailMsg.innerHTML = "";
   let emailPattern = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   if (!emailPattern.test(submittedEmail)) {
@@ -31,7 +32,7 @@ function validateForm(e) {
   }
 
   let submittedPassword = passwordInput.value.trim();
-  console.log(`Message: ${submittedPassword}`);
+  //console.log(`Message: ${submittedPassword}`);
 
   passwordMsg.innerHTML = "";
   if (submittedPassword.length < 8) {
@@ -43,7 +44,6 @@ function validateForm(e) {
 loginBtn.addEventListener("click", validateAndProcess);
 function validateAndProcess(event) {
   event.preventDefault();
-  //console.log("du har trykket");
 
   const data = {
     email: emailInput.value.trim().toLowerCase(),
@@ -63,13 +63,11 @@ async function loginUser(url, data) {
       },
       body: JSON.stringify(data),
     };
-
     //console.log(url, data, options);
-
     const response = await fetch(url, options);
-    console.log(response);
+    //console.log(response);
     const answer = await response.json();
-    console.log(answer);
+    //console.log(answer);
     localStorage.setItem("username", answer.name);
     localStorage.setItem("accessToken", answer.accessToken);
 
