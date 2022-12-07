@@ -41,8 +41,11 @@ async function getListings(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const listings = await response.json();
-    //console.log(listings);
+    console.log(listings);
     writeListings(listings, listingsOutput);
+    if (listings.length === 0) {
+      listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">You dont have any listings, YET &#127793</p>`;
+    }
   } catch (error) {
     if (error) {
       listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">Something went wrong! Please try again in a few seconds &#128517</p>`;
@@ -162,7 +165,7 @@ const writeListings = (list, outElement) => {
   }
 };
 
-// Writes out all listings the user has bid on
+// Gets all listings the user has bid on
 async function getBids(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -184,6 +187,9 @@ async function getBids(url) {
     const listings = await response.json();
     //console.log(listings);
     writeBids(listings, listingsOutput);
+    if (listings.length === 0) {
+      listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">Nothing to see here &#128640</p>`;
+    }
   } catch (error) {
     if (error) {
       listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">Something went wrong! Please try again in a few seconds &#128517</p>`;
