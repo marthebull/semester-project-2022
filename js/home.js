@@ -9,7 +9,8 @@ const allBidsUrl = `${API_BASE_URL}${allBidsEndpoint}`;
 
 const outElement = document.getElementById("listings-feed");
 const searchBar = document.getElementById("search-bar");
-const sortBtn = document.getElementById("sort-ending-soon");
+const allRadio = document.getElementById("sort-all");
+const endingRadio = document.getElementById("sort-ending");
 
 //console.log(postCollection);
 
@@ -40,6 +41,28 @@ async function getAllListings(url) {
 
 // Gets all listings
 getAllListings(allListingsUrl);
+
+// Filters list by expiration date
+endingRadio.addEventListener("change", sortEnding);
+
+function sortEnding() {
+  if (endingRadio.checked == true) {
+    console.log(endingRadio.value);
+    allRadio.checked = false;
+    getAllListings(allBidsUrl);
+  }
+}
+
+// Shows all active listings again
+allRadio.addEventListener("change", sortAll);
+
+function sortAll() {
+  if (allRadio.checked == true) {
+    console.log(allRadio.value);
+    endingRadio.checked = false;
+    getAllListings(allListingsUrl);
+  }
+}
 
 // Writes all listings to outElement
 const writeListings = (list, outElement) => {
@@ -169,38 +192,3 @@ function search() {
 
   writeListings(filteredList, outElement);
 }
-
-// Filters list by expiration date
-
-sortBtn.addEventListener("click", sort);
-
-function sort() {
-
-    let value = sortBtn.innerHTML;
-
-    if (value == "YES") {
-      document.querySelctor("#demo").innerHTML = "NO";
-    } else {
-      document.querySelctor("#demo").innerHTML = "YES";
-    }
-  getAllListings(allBidsUrl);
-}
-
-/*
-sortBtn.addEventListener("click", sortByExpiration);
-
-function sortByExpiration(a, b) {
-  const endingSoon = listingsCollection.filter((listing) => {
-    console.log(listing.title);
-
-    if (a.expires < b.expires) {
-      return -1;
-    }
-    if (a.expires > b.expires) {
-      return 1;
-    }
-    return 0;
-  });
-
-  writeListings(endingSoon, outElement);
-}*/
