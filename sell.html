@@ -13,8 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Montserrat:wght@400;600;700&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e6e3ac140.js" crossorigin="anonymous"></script>
-    <script defer type="module" src="./js/main.js"></script>
-    <script defer type="module" src="./js/sell.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
@@ -49,11 +47,11 @@
         <div class="col-10 mx-auto d-flex flex-column flex-md-row">
             <div class="col-12 col-md-5 d-flex flex-column justify-content-center rounded col mx-auto mx-md-0 mb-5">
                 <h1 class="text-center mb-5 pt-4 knewave">NEW listing</h1>
-                <form action="" class="d-flex flex-column justify-content-center pt-3">
+                <form action="./home.html" class="d-flex flex-column justify-content-center pt-3">
                     <p class="text-danger justify-content-start" id="listing-error-msg"></p>
                     <input id="listing-title" type="text" class="form-control bg-light border-0 mb-3 box-shadow-pink" placeholder="Title">
                     <p class="text-danger justify-content-start" id="listing-date-msg"></p>
-                    <input id="listing-date" class="form-control bg-light border-0 mb-3 box-shadow-pink" type="datetime-local" name="partydate" value="2023-06-01T00:00"/>
+                    <input id="listing-date" class="form-control bg-light border-0 mb-3 box-shadow-pink" type="datetime-local" name="partydate" value="2023-06-01T00:00">
                     <p class="text-danger justify-content-start" id="listing-description-msg"></p>
                     <textarea placeholder="Description" class="form-control bg-light border-0 mb-3 box-shadow-pink" id="listing-description" cols="30" rows="3"></textarea>
                     <p class="text-danger justify-content-start" id="listing-main-img-msg"></p>
@@ -65,7 +63,7 @@
                 <div class="card border-0 box-shadow-pink">
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
                     <img src="https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true" class="card-img-top card-img-size"
-                        alt="Product picture placeholder" />
+                        alt="Product picture placeholder">
                     <div class="card-body p-4">
                         <h5 class="card-title"><a href="#" class="text-black text-decoration-none stretched-link"></a></h5>
                         <div class="d-flex justify-content-between pt-3">
@@ -94,5 +92,7 @@
             <p class="m-1">2022 | Copyright highestbidder</p>
         </div>
     </footer>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/sell.js"></script>
 </body>
 </html>
