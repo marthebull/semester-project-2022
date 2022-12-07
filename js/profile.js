@@ -5,12 +5,16 @@ const profileEndpoint = `/auction/profiles/${userName}?_listings=true`;
 const profileUrl = `${API_BASE_URL}${profileEndpoint}`;
 
 const profileListingsUrl = `${API_BASE_URL}/auction/profiles/${userName}/listings`;
+const profileActiveListingsUrl = `${API_BASE_URL}/auction/profiles/${userName}/listings?_active=true`;
 const profileBidsUrl = `${API_BASE_URL}/auction/profiles/${userName}/bids?_listings=true`;
 const updateAvatarUrl = `${API_BASE_URL}/auction/profiles/${userName}/media`;
 
 // Gets elements needed
 const listingsOutput = document.getElementById("listings-output");
 const bidsOutput = document.getElementById("bids-output");
+const allMyListingsRadio = document.getElementById("all-my-listings");
+const myActiveListingsRadio = document.getElementById("my-active-listings");
+const myBidsRadio = document.getElementById("my-bids");
 const profileImg = document.getElementsByClassName("profile-img");
 const profileInfoOutput = document.getElementById("profile-info");
 
@@ -43,8 +47,41 @@ async function getListings(url) {
     console.warn(error);
   }
 }
-
 getListings(profileListingsUrl);
+
+// Filter
+// Shows all "my" listings
+allMyListingsRadio.addEventListener("change", allMyListings);
+function allMyListings() {
+  if (allMyListingsRadio.checked == true) {
+    //console.log(endingRadio.value);
+    myActiveListingsRadio.checked = false;
+    myBidsRadio.checked = false;
+    getListings(profileListingsUrl);
+  }
+}
+
+// Shows "my" active listings
+myActiveListingsRadio.addEventListener("change", myActiveListings);
+function myActiveListings() {
+  if (myActiveListingsRadio.checked == true) {
+    //console.log(endingRadio.value);
+    allMyListingsRadio.checked = false;
+    myBidsRadio.checked = false;
+    getListings(profileActiveListingsUrl);
+  }
+}
+
+// Shows all listings "I" have bid on
+myBidsRadio.addEventListener("change", myBids);
+function myBids() {
+  if (myBidsRadio.checked == true) {
+    //console.log(endingRadio.value);
+    allMyListingsRadio.checked = false;
+    myActiveListingsRadio.checked = false;
+    getBids(profileBidsUrl);
+  }
+}
 
 // Writes all listings by this profile to outElement
 const writeListings = (list, outElement) => {
@@ -143,12 +180,12 @@ async function getBids(url) {
     //console.log(response);
     const listings = await response.json();
     //console.log(listings);
-    writeBids(listings, bidsOutput);
+    writeBids(listings, listingsOutput);
   } catch (error) {
     console.warn(error);
   }
 }
-getBids(profileBidsUrl);
+//getBids(profileBidsUrl);
 
 // Writes out all listings the user has bid on
 const writeBids = (list, outElement) => {

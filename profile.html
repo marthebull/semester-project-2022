@@ -55,7 +55,22 @@
                 </div>
             </div>
             <div class="col-12 col-lg-9 ps-md-5">
-                <h1 class="knewave mb-5">MY listings</h1>
+                <h1 class="knewave mb-3">MY listing overview</h1>
+                <div class="d-flex col mb-3 p-0">
+                    <p>Show:</p>
+                    <div class="form-check form-check-inline ms-3">
+                        <input class="form-check-input border-primary" type="radio" id="all-my-listings" value="" checked>
+                        <label class="form-check-label" for="all-my-listings">All</label>
+                    </div>
+                    <div class="form-check form-check-inline ms-1">
+                        <input class="form-check-input border-primary" type="radio" id="my-active-listings" value="">
+                        <label class="form-check-label" for="my-active-listings">Active</label>
+                    </div>
+                    <div class="form-check form-check-inline ms-1">
+                        <input class="form-check-input border-primary" type="radio" id="my-bids" value="">
+                        <label class="form-check-label" for="my-bids">Biddings</label>
+                    </div>
+                </div>
                 <div id="listings-output" class="row row-cols-1 row-cols-md-2 g-md-4 gx-md-5">
                     <div class="col pb-4 placeholder-glow">
                         <div class="card h-100 border-0 box-shadow-pink">
@@ -106,46 +121,6 @@
                         </div>
                     </div>
                 </div>
-                <h1 class="knewave mb-5 pt-5">MY biddings</h1>
-                <div id="bids-output" class="row row-cols-1 row-cols-md-2 g-md-4 gx-md-5">
-                    <div class="col pb-4 placeholder-glow">
-                        <div class="card h-100 border-0 box-shadow-pink">
-                            <div class="card-img-top card-img-size placeholder">
-                            </div>
-                            <div class="card-body p-4">
-                                <div class="mb-5 pb-3 col-10 rounded placeholder"><span>&nbsp;</span></div>
-                                <p class="pb-3 col-10 rounded placeholder"></p>
-                                <p class="pb-3 col-10 rounded placeholder"></p>
-                                <p class="pb-3 col-4 rounded placeholder"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-4 placeholder-glow">
-                        <div class="card h-100 border-0 box-shadow-pink">
-                            <div class="card-img-top card-img-size placeholder">
-                            </div>
-                            <div class="card-body p-4">
-                                <div class="mb-5 pb-3 col-10 rounded placeholder"><span>&nbsp;</span></div>
-                                <p class="pb-3 col-10 rounded placeholder"></p>
-                                <p class="pb-3 col-10 rounded placeholder"></p>
-                                <p class="pb-3 col-4 rounded placeholder"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-4 placeholder-glow">
-                        <div class="card h-100 border-0 box-shadow-pink">
-                            <div class="card-img-top card-img-size placeholder">
-                            </div>
-                            <div class="card-body p-4">
-                                <div class="mb-5 pb-3 col-10 rounded placeholder"><span>&nbsp;</span></div>
-                                <p class="pb-3 col-10 rounded placeholder"></p>
-                                <p class="pb-3 col-10 rounded placeholder"></p>
-                                <p class="pb-3 col-4 rounded placeholder"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="modal fade" id="avatar-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTit"
