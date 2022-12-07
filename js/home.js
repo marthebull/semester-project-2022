@@ -175,6 +175,14 @@ function search() {
 sortBtn.addEventListener("click", sort);
 
 function sort() {
+
+    let value = sortBtn.innerHTML;
+
+    if (value == "YES") {
+      document.querySelctor("#demo").innerHTML = "NO";
+    } else {
+      document.querySelctor("#demo").innerHTML = "YES";
+    }
   getAllListings(allBidsUrl);
 }
 
