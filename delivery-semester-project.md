@@ -14,3 +14,5 @@ Links:
 <a href="https://github.com/marthebull/semester-project-2">Github repo</a>
 
 <a href="https://highestbidder.netlify.app/">Hosted demo on Netlify: https://highestbidder.netlify.app/</a>
+
+More info in README.md on github.
