@@ -66,13 +66,13 @@ const writeListing = (listing, outElement) => {
   const sellerInfoEndpoint = `${API_BASE_URL}/auction/profiles/${listing.seller.name}`;
   getSellerInfo(sellerInfoEndpoint);
 
+  // Shows media in gallery if multiple imgs, not gallery if 1 img, placeholder if 0
   let placeholderImg =
     "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true";
   let mediaList;
   let indicators;
   let sliderBtns;
 
-  // Shows media in gallery if more than 1 img, displayes placeholder if 0
   if (listing.media.length <= 0) {
     sliderBtns = "";
     indicators = "";
