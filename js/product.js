@@ -123,7 +123,7 @@ const writeListing = (listing, outElement) => {
                     <a data-bs-toggle="modal" data-bs-target="#profile-modal" class="d-flex mb-3 text-black text-decoration-none" style="cursor:pointer;">
                         <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="Profile picture" style="width: 50px;">
                         <div class="ms-2">
-                            <p class="mb-0">Listed by</p>
+                        <p class="mb-0 small">Profile details</p>
                             <p class="mb-0"><strong>@${listing.seller.name}</strong></p>
                         </div>
                     </a>
@@ -197,15 +197,6 @@ const writeListing = (listing, outElement) => {
   } else {
     timer.classList.add("expired");
   }
-  /*
-  // Writes the sellers info into modal
-  profileModal.innerHTML = `
-            <img class="mx-auto rounded-circle profile-img mb-4" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
-            <p class="text-center"><strong>@${listing.seller.name}</strong></p>
-            <p class="text-center">${listing.seller.email}</p>
-            <p class="text-center">Wins: ${listing.seller.wins.length}</p>
-
-  `; */
 };
 
 // List all bids
