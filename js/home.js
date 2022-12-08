@@ -31,13 +31,22 @@ async function getAllListings(url) {
     //console.log(response);
 
     const listings = await response.json();
-    //console.log(listings);
+    console.log(listings);
     listingsCollection = listings;
     writeListings(listings, outElement);
   } catch (error) {
-    if (error) {
-      outElement.innerHTML = `<p class="text-center mx-auto">Something went wrong! Please try again in a few seconds &#128517</p>`;
-    }
+    outElement.innerHTML = `
+        <div class="d-flex align-items-center mx-auto row">
+            <div>
+                <p class="text-center mx-auto">
+                    Something went wrong! 
+                </p>
+                <p class="text-center mx-auto">
+                    Please try again in a few seconds &#128517
+                </p>
+            </div>
+        </div>
+        `;
     console.warn(error);
   }
 }

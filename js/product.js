@@ -41,6 +41,19 @@ async function getListing(url) {
     writeListing(listing, listingCont);
     writeBids(listing, bidsCont);
   } catch (error) {
+    listingCont.innerHTML = `
+        <div class="d-flex align-items-center mx-auto row">
+            <div>
+                <p class="text-center mx-auto">
+                    Something went wrong! 
+                </p>
+                <p class="text-center mx-auto">
+                    Please try again in a few seconds &#128517
+                </p>
+            </div>
+        </div>
+        `;
+
     console.warn(error);
   }
 }
@@ -53,12 +66,57 @@ const writeListing = (listing, outElement) => {
   const sellerInfoEndpoint = `${API_BASE_URL}/auction/profiles/${listing.seller.name}`;
   getSellerInfo(sellerInfoEndpoint);
 
-  const productImg =
-    listing.media.length !== 0
-      ? `${listing.media[0]}`
-      : [
-          "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
-        ];
+  let placeholderImg =
+    "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true";
+  let mediaList;
+  let indicators;
+  let sliderBtns;
+
+  // Shows media in gallery if more than 1 img, displayes placeholder if 0
+  if (listing.media.length <= 0) {
+    sliderBtns = "";
+    indicators = "";
+    mediaList = `<img class="w-100 h-100 listing-img" src="${placeholderImg}" alt="Placeholder image" style="object-fit: cover;">`;
+  } else if (listing.media.length === 1) {
+    sliderBtns = "";
+    indicators = "";
+    mediaList = `
+                <img class="w-100 h-100 listing-img" src="${listing.media[0]}" alt="Placeholder image" style="object-fit: cover;">
+        `;
+  } else if (listing.media.length > 1) {
+    sliderBtns = `
+                <button class="carousel-control-prev" type="button" data-bs-target="#mediaCont" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#mediaCont" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+    `;
+    mediaList = `
+            <div class="carousel-item active h-100">
+                <img class="h-100 w-100 listing-img" src="${listing.media[0]}" alt="Product image 0" style="object-fit: cover;">
+            </div>
+        `;
+    indicators = `
+            <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+    `;
+
+    for (let i = 1; i < listing.media.length; i++) {
+      console.log(i, listing.media.length);
+      mediaList += `
+            <div class="carousel-item h-100">
+                <img class="h-100 w-100 listing-img" src="${listing.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
+            </div>
+        `;
+      indicators += `
+                <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>
+    `;
+    }
+  }
+
+  console.log(mediaList, listing.media.length);
 
   const profileImg =
     listing.seller.avatar === "" || listing.seller.avatar === null
@@ -101,11 +159,17 @@ const writeListing = (listing, outElement) => {
   findHighestBid(allbids);
 
   outElement.innerHTML = `
-            <div class="col-12 col-md-6 d-flex">
-                <img class="w-100 listing-img" src="${productImg}" alt="Placeholder image" style="object-fit: cover;">
+            <div id="mediaCont" class="col-12 col-md-6 d-flex carousel slide" data-ride="carousel">
+                <div class="carousel-indicators">
+                    ${indicators}
+                </div>
+                <div class="carousel-inner h-100">
+                    ${mediaList}
+                </div> 
+                ${sliderBtns}
             </div>
             <div class="col-12 col-md-5 d-flex flex-column justify-content-center col mx-auto p-5 ">
-                <div class="mb-4">
+                <div class="mb-2">
                     <h2 class="mb-2">${listing.title}</h2>
                     <div class="d-flex pt-3">
                         <div>
@@ -118,7 +182,7 @@ const writeListing = (listing, outElement) => {
                         </div>
                     </div>
                 </div>
-                <p class="pb-3">${listing.description}</p>
+                <p class="pb-3 overflow-auto">${listing.description}</p>
                 <div>
                     <a data-bs-toggle="modal" data-bs-target="#profile-modal" class="d-flex mb-3 text-black text-decoration-none" style="cursor:pointer;">
                         <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="Profile picture" style="width: 50px;">
@@ -130,7 +194,6 @@ const writeListing = (listing, outElement) => {
                 </div>
                 <p class="text-danger justify-content-start text-center" id="bid-error-msg"></p>
                 <div id="bid-or-login" class="d-flex flex-column justify-content-center">
-                    
                 </div>
             </div>
             `;
@@ -162,7 +225,7 @@ const writeListing = (listing, outElement) => {
   } else if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
     bidOrLogin.innerHTML = `
         <input id="place-bid-input" type="text" class="form-control bg-light border-0 mb-3 hide-out" placeholder="Place a bid">
-        <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center mb-3 col-12 hide-out">Place bid</button>
+        <button id="send-bid-btn" type="submit" class="btn btn-primary text-white mx-auto text-center col-12 hide-out">Place bid</button>
                     `;
     const sendBidBtn = document.getElementById("send-bid-btn");
     sendBidBtn.addEventListener("click", validateAndProcess);
@@ -170,7 +233,7 @@ const writeListing = (listing, outElement) => {
     bidOrLogin.innerHTML = "";
     bidOrLogin.innerHTML = `
         <p class="mb-0 text-danger pb-3">This listing has expired</p>
-        <button id="bid-expired" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Browse other listings</button>
+        <button id="bid-expired" type="button" class="btn btn-primary text-white mx-auto text-center col-12 hide-in">Browse other listings</button>
                     `;
     //console.log("went to expired");
     const expiredListingBtn = document.getElementById("bid-expired");
@@ -179,7 +242,7 @@ const writeListing = (listing, outElement) => {
     });
   } else {
     bidOrLogin.innerHTML = `
-        <button id="login-to-bid" type="button" class="btn btn-primary text-white mx-auto text-center mb-4 col-12 hide-in">Log in to place bid</button>
+        <button id="login-to-bid" type="button" class="btn btn-primary text-white mx-auto text-center col-12 hide-in">Log in to place bid</button>
                     `;
     const loginToBidBtn = document.getElementById("login-to-bid");
     loginToBidBtn.addEventListener("click", function (e) {

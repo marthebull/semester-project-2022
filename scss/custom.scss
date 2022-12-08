@@ -10,6 +10,11 @@ $primary: #806BFF;
 $dark: #474747;
 $danger: #D08A58;
 
+$carousel-control-color: #806BFF;
+$carousel-control-opacity: .9;
+$carousel-control-hover-opacity: 1;
+$carousel-indicator-active-bg: #806BFF;
+
 $input-placeholder-color: #909090;
 
 $placeholder-opacity-max: .1;
@@ -22,6 +27,7 @@ $placeholder-opacity-min: .05;
 .logo-shadow {
     text-shadow: 2px 2px 2px #806BFF;
 }
+
 
 $navbar-brand-font-size: 2.1rem;
 $font-family-sans-serif: montserrat, sans-serif;
