@@ -1,6 +1,7 @@
 # semester-project-2022
 
-Semester project 2 - 15.11.2022
+<strong>Semester project 2</strong> 15.11.2022 - 16.12.2022
+by Marthe Bull Pettersen
 
 Goal:
 To take the skills learned over the past three semesters and create an auction website.

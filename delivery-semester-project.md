@@ -1,5 +1,5 @@
-Semester project 2 - 15.11.2022
-Marthe Bull Pettersen
+<strong>Semester project 2</strong> 15.11.2022 - 16.12.2022
+by Marthe Bull Pettersen
 
 Links:
 
