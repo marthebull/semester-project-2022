@@ -146,7 +146,7 @@ const writeListings = (list, outElement) => {
                         <div class="d-flex justify-content-between pt-3">
                             <div>
                                 <p class="m-1">Highest bid:</p>
-                                <p class="m-1"><strong>${highest}</strong></p>
+                                <p class="m-1"><strong>${highest} credits</strong></p>
                             </div>
                             <div>
                                 <p class="m-1 text-end">Ends in:</p>

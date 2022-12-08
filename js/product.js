@@ -376,7 +376,7 @@ async function getSellerInfo(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const user = await response.json();
-    console.log(user);
+    //console.log(user);
     writeSellerInfo(user);
   } catch (error) {
     console.warn(error);

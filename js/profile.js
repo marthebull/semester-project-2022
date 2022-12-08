@@ -41,7 +41,7 @@ async function getListings(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const listings = await response.json();
-    console.log(listings);
+    //console.log(listings);
     writeListings(listings, listingsOutput);
     if (listings.length === 0) {
       listingsOutput.innerHTML = `<p class="text-center mx-auto mb-5 pt-5">You dont have any listings, YET &#127793</p>`;
@@ -295,7 +295,7 @@ async function getProfile(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const profile = await response.json();
-    console.log(profile);
+    //console.log(profile);
     writeProfileInfo(profile, profileInfoOutput);
   } catch (error) {
     if (error) {
