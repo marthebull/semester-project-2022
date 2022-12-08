@@ -5,9 +5,9 @@ Links:
 
 <a href="https://www.figma.com/file/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?node-id=1%3A5&t=Z288Z6YUHHkhpNHh-0">Gantt chart</a>
 
-<a href="https://www.figma.com/file/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?node-id=1%3A4&t=Z288Z6YUHHkhpNHh-0">Figma design files and prototypes(see several pages)</a>
+<a href="https://www.figma.com/proto/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?node-id=15%3A677&scaling=min-zoom&page-id=1%3A4&starting-point-node-id=15%3A677">Figma prototype</a>
 
-<a href="https://www.figma.com/file/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?node-id=1%3A3&t=o7hfI7o6vzzVA7wO-0">Style guide</a>
+<a href="https://www.figma.com/file/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?node-id=1%3A3&t=o7hfI7o6vzzVA7wO-0">Style guide (see pages for all design files)</a>
 
 <a href="https://trello.com/b/mR3xnHO4/semester-project-2">Trello</a>
 
