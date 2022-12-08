@@ -19,21 +19,39 @@ Links:
 
 <a href="https://github.com/marthebull/semester-project-2">Github repo</a>
 
-<a href="https://highestbidder.netlify.app/">Netlify</a>
+<a href="https://highestbidder.netlify.app/">Netlify main: https://highestbidder.netlify.app/</a>
 
----
-
-HUSK!!
-
-- minimize css for production code
-- hva må en installere på en ny maskin for at det skal funke der?
+<a href="https://effortless-begonia-050acb.netlify.app/">Netlify dev: https://effortless-begonia-050acb.netlify.app/</a>
 
 ---
 
 Report:
 
-I will be using bootstrap as CSS framework for this project.
+I will be using bootstrap as CSS-framework for this project.
+In order to clone this code and make it work you should run `npm install bootstrap@latest` vscode terminal.
 
-Sources:
+For usertesting ive used the given userstories for the assignment and added a few to test functionality:
+
+- Brukeren kan bla gjennom og se på produkter uten å være logget inn.
+- Brukeren kan søke på produkter eller sortere på “latest first” eller “ending soon”.
+- Brukeren kan registrere seg på siden.
+- Brukeren kan logge inn på siden.
+- Hvis noe ikke fungerer får brukeren tilbakemelding på dette ved feilmeldinger som forklarer feilen.
+- Brukeren som er logget inn kan se profilen sin, sine listings og listings de selv har bydd på.
+- Brukeren kan oppdatere profilbildet sitt.
+- Brukeren kan se sin totale credit-saldo.
+- Brukeren kan opprette og legge ut en ny listing med tittel, deadline, beskrivelse og bilde og få en preview av listingen før den legges ut.
+- Brukeren kan oppdatere sin egen listing.
+- Brukeren kan slette sin egen listing.
+- Brukeren kan by på en annens listing.
+- Brukeren kan se andres/alle bud på en listing.
+- Brukeren kan se profilinfo om selger.
+- Brukeren kan se høyeste bud på en listing.
+- Når brukeren byr på en annens listing påvirkes credit-saldoen.
+- Brukeren kan logge ut.
+
+---
+
+Resources:
 
 Navbar code for bootstrap: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-navbar.php

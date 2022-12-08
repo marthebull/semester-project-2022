@@ -1,8 +1,8 @@
 $body-bg: #F6E8DE;
 $indigo: #806BFF;
 $pink: #F6E8DE;
-$orange: #D08A58;
-$green: #838E00;
+$orange: #a05f2f;
+$green: #474e00;
 $gray-600: #F3F3F3;
 $gray-800: #474747;
 
@@ -12,8 +12,15 @@ $danger: #D08A58;
 
 $input-placeholder-color: #909090;
 
+$placeholder-opacity-max: .1;
+$placeholder-opacity-min: .05;
+
 .box-shadow-pink {
     box-shadow: 4px 4px 10px rgba(#D08A58, .15);
+}
+
+.logo-shadow {
+    text-shadow: 2px 2px 2px #806BFF;
 }
 
 $navbar-brand-font-size: 2.1rem;
@@ -41,6 +48,50 @@ $btn-font-weight: 600;
     margin-bottom: 0;
 }
 
+.expired {
+    color: #D08A58;
+}
 
+.not-expired {
+    color: #838E00;
+}
+
+.card-img-size {
+    width: 100%px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.profile-img-thumbnail {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.desc-text {
+    max-height: 2ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sort-ending {
+    border-radius: 10px 0 0 10px;
+}
+
+.sort-latest {
+    border-radius: 0 10px 10px 0;
+}
+
+.listing-img {
+    border-radius: 0.375rem 0 0 0.375rem;
+}
+
+@media (max-width: 768px) {
+    .listing-img {
+            border-radius: 0.375rem 0.375rem 0 0;
+        }
+}
 
 @import"../node_modules/bootstrap/scss/bootstrap";
