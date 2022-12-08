@@ -295,7 +295,7 @@ async function getProfile(url) {
     const response = await fetch(url, options);
     //console.log(response);
     const profile = await response.json();
-    //console.log(profile);
+    console.log(profile);
     writeProfileInfo(profile, profileInfoOutput);
   } catch (error) {
     if (error) {

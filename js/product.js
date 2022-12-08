@@ -50,6 +50,9 @@ getListing(listingUrl);
 const writeListing = (listing, outElement) => {
   outElement.innerHTML = "";
 
+  const sellerInfoEndpoint = `${API_BASE_URL}/auction/profiles/${listing.seller.name}`;
+  getSellerInfo(sellerInfoEndpoint);
+
   const productImg =
     listing.media.length !== 0
       ? `${listing.media[0]}`
@@ -194,7 +197,7 @@ const writeListing = (listing, outElement) => {
   } else {
     timer.classList.add("expired");
   }
-
+  /*
   // Writes the sellers info into modal
   profileModal.innerHTML = `
             <img class="mx-auto rounded-circle profile-img mb-4" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
@@ -202,7 +205,7 @@ const writeListing = (listing, outElement) => {
             <p class="text-center">${listing.seller.email}</p>
             <p class="text-center">Wins: ${listing.seller.wins.length}</p>
 
-  `;
+  `; */
 };
 
 // List all bids
@@ -366,3 +369,44 @@ const updateSubmit = document.getElementById("update-submit");
 updateSubmit.addEventListener("click", () => {
   updateListing(id);
 });
+
+// Gets sellers info
+async function getSellerInfo(url) {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    //console.log(url, options);
+
+    const response = await fetch(url, options);
+    //console.log(response);
+    const user = await response.json();
+    console.log(user);
+    writeSellerInfo(user);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+function writeSellerInfo(seller) {
+  const profileImg =
+    seller.avatar === "" || seller.avatar === null
+      ? [
+          "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/placeholder-profile-img.jpg?raw=true",
+        ]
+      : seller.avatar;
+  // Writes the sellers info into modal
+  profileModal.innerHTML = `
+            <img class="mx-auto rounded-circle profile-img mb-4" src="${profileImg}" alt="Profile picture" style="width: 180px; height: 180px; object-fit: cover;">
+            <p class="text-center"><strong>@${seller.name}</strong></p>
+            <p class="text-center">${seller.email}</p>
+            <p class="text-center">Credits: ${seller.credits}</p>
+            <p class="text-center">Listings: ${seller._count.listings}</p>
+            <p class="text-center">Wins: ${seller.wins.length}</p>
+
+  `;
+}
