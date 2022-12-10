@@ -29,6 +29,7 @@ function isLoggedin() {
 
 isLoggedin();
 
+// Option to add more inputs and add images
 let numberOfInputs = 0;
 addInputBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -90,18 +91,9 @@ function validateAndProcess(event) {
   }
   console.log(numberOfInputs, media);
 
-  /*
-  if (media[0] === "") {
-    media = [
-      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
-    ];
-  }
-  */
-
   //console.log(media);
 
   const bidEnds = listingDate.value.trim();
-  //console.log(bidEnds);
   const endsAt = `${bidEnds}:00.000Z`;
 
   let listingData = {
@@ -180,7 +172,7 @@ async function preview() {
   previewCont.innerHTML = `
                 <div class="card border-0 box-shadow-pink">
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
-                    <img id="preview-img" src="${submittedMedia} " class="card-img-top card-img-size" alt="Product picture placeholder"/>
+                    <img id="preview-img" src="${submittedMedia}" onerror="this.src = 'https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true'" class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${listingTitle.value}</a></h5>
                         <p class="pb-3 desc-text">${listingDescription.value}</p>

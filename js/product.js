@@ -72,8 +72,9 @@ const writeListing = (listing, outElement) => {
   let mediaList;
   let indicators;
   let sliderBtns;
+  const imgTestPattern = /\.(jpeg|jpg|gif|png|svg)$/;
 
-  if (listing.media.length <= 0) {
+  if (listing.media.length <= 0 || !imgTestPattern.test(listing.media)) {
     sliderBtns = "";
     indicators = "";
     mediaList = `<img class="w-100 h-100 listing-img" src="${placeholderImg}" alt="Placeholder image" style="object-fit: cover;">`;
