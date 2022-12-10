@@ -20,7 +20,8 @@ const profileModal = document.getElementById("profile-info");
 
 const editTitle = document.getElementById("update-title");
 const editDesc = document.getElementById("update-description");
-const editMedia = document.getElementById("update-main-img");
+//const editMedia = document.getElementById("update-main-img");
+const editMediaDiv = document.getElementById("update-imgs-div");
 
 // Gets listing by id from API
 async function getListing(url) {
@@ -72,9 +73,8 @@ const writeListing = (listing, outElement) => {
   let mediaList;
   let indicators;
   let sliderBtns;
-  const imgTestPattern = /\.(jpeg|jpg|gif|png|svg)$/;
 
-  if (listing.media.length <= 0 || !imgTestPattern.test(listing.media)) {
+  if (listing.media.length <= 0) {
     sliderBtns = "";
     indicators = "";
     mediaList = `<img class="w-100 h-100 listing-img" src="${placeholderImg}" alt="Placeholder image" style="object-fit: cover;">`;
@@ -82,7 +82,7 @@ const writeListing = (listing, outElement) => {
     sliderBtns = "";
     indicators = "";
     mediaList = `
-                <img class="w-100 h-100 listing-img" src="${listing.media[0]}" alt="Placeholder image" style="object-fit: cover;">
+                <img class="w-100 h-100 listing-img" src="${listing.media[0]}" onerror="this.src = 'https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true'" alt="Placeholder image" style="object-fit: cover;">
         `;
   } else if (listing.media.length > 1) {
     sliderBtns = `
@@ -220,7 +220,12 @@ const writeListing = (listing, outElement) => {
     editBtn.addEventListener("click", () => {
       editTitle.innerHTML = `${listing.title}`;
       editDesc.innerHTML = `${listing.description}`;
-      editMedia.innerHTML = `${listing.media}`;
+      //editMedia.innerHTML = `${listing.media}`;
+      for (let i = 0; i < listing.media.length; i++) {
+        editMediaDiv.innerHTML += `
+      <textarea class="form-control bg-light border-0 update-media-field" placeholder="Image URL" rows="3">${listing.media[i]}</textarea><br>
+      `;
+      }
       //console.log(listing.title, listing.description, listing.media);
     });
   } else if (localStorage.getItem("accessToken") && timeLeft !== "EXPIRED") {
@@ -376,10 +381,19 @@ async function deletePost(id) {
 async function updateListing(id) {
   const title = editTitle.value.trim();
   const desc = editDesc.value.trim();
-  let media = [`${editMedia.value.trim()}`];
 
-  if (media[0] === "") {
-    media = [
+  let updateMedia = [];
+
+  const allUpdateImgInputs =
+    document.getElementsByClassName("update-media-field");
+  //console.log(allUpdateImgInputs);
+  for (let inputs of allUpdateImgInputs) {
+    updateMedia.push(inputs.value.trim());
+  }
+  console.log(updateMedia);
+
+  if (updateMedia[0] === "") {
+    updateMedia = [
       "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
     ];
   }
@@ -387,7 +401,7 @@ async function updateListing(id) {
   const data = {
     title: title,
     description: desc,
-    media: media,
+    media: updateMedia,
   };
 
   const url = `${deleteUrl}${id}`;
@@ -447,6 +461,7 @@ async function getSellerInfo(url) {
   }
 }
 
+// writes seller info into modal
 function writeSellerInfo(seller) {
   const profileImg =
     seller.avatar === "" || seller.avatar === null
