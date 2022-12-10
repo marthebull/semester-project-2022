@@ -8,7 +8,6 @@ const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const viewListingEndpoint = `/auction/listings/${id}`;
 const listingUrl = `${API_BASE_URL}${viewListingEndpoint}?_seller=true&_bids=true`;
 const makeBidUrl = `${API_BASE_URL}${viewListingEndpoint}/bids`;
-//console.log(makeBidUrl);
 const deleteUrl = `${API_BASE_URL}/auction/listings/`;
 
 // Gets elements needed
@@ -20,7 +19,6 @@ const profileModal = document.getElementById("profile-info");
 
 const editTitle = document.getElementById("update-title");
 const editDesc = document.getElementById("update-description");
-//const editMedia = document.getElementById("update-main-img");
 const editMediaDiv = document.getElementById("update-imgs-div");
 
 // Gets listing by id from API
@@ -105,7 +103,7 @@ const writeListing = (listing, outElement) => {
     `;
 
     for (let i = 1; i < listing.media.length; i++) {
-      console.log(i, listing.media.length);
+      //console.log(i, listing.media.length);
       mediaList += `
             <div class="carousel-item h-100">
                 <img class="h-100 w-100 listing-img" src="${listing.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
@@ -116,8 +114,7 @@ const writeListing = (listing, outElement) => {
     `;
     }
   }
-
-  console.log(mediaList, listing.media.length);
+  //console.log(mediaList, listing.media.length);
 
   const profileImg =
     listing.seller.avatar === "" || listing.seller.avatar === null
