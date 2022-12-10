@@ -9,6 +9,8 @@ const listingDate = document.getElementById("listing-date");
 const listingDescription = document.getElementById("listing-description");
 const listingMainImg = document.getElementById("listing-main-img");
 const listingSubmit = document.getElementById("listing-submit");
+const addInputBtn = document.getElementById("add-inputs");
+const imgInputsDiv = document.getElementById("img-inputs");
 
 const listingErrorMsg = document.getElementById("listing-error-msg");
 
@@ -26,6 +28,17 @@ function isLoggedin() {
 }
 
 isLoggedin();
+
+let numberOfInputs = 0;
+addInputBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  //console.log("You clicked me!");
+  numberOfInputs += 1;
+  const input = `
+            <input id="img-input${numberOfInputs}" type="text" class="form-control bg-light border-0 box-shadow-pink img-input" placeholder="Image URL"><br>
+    `;
+  imgInputsDiv.innerHTML += input;
+});
 
 // Posts listing info to API
 async function listIt(url, data) {
