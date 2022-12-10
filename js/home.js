@@ -149,7 +149,7 @@ const writeListings = (list, outElement) => {
                         }
                         </p>
                         <a href="#" class="d-flex mb-3 pt-2 text-black text-decoration-none">
-                            <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="">
+                            <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="" onerror="this.src = 'https://github.com/marthebull/semester-project-2022/blob/dev-js/images/placeholder-profile-img.jpg?raw=true'">
                             <div class="ms-2">
                                 <p class="mb-0">Listed by</p>
                                 <p class="mb-0"><strong>@${
