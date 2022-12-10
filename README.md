@@ -48,6 +48,7 @@ For usertesting ive used the given userstories for the assignment and added a fe
 - Brukeren kan by på en annens listing.
 - Brukeren kan se andres/alle bud på en listing.
 - Brukeren kan se profilinfo om selger.
+- Brukeren kan bla i mediegalleri dersom det finnes flere bilder av produktet.
 - Brukeren kan se høyeste bud på en listing.
 - Når brukeren byr på en annens listing påvirkes credit-saldoen.
 - Brukeren kan logge ut.

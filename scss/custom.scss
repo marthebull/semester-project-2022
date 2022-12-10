@@ -1,14 +1,19 @@
 $body-bg: #F6E8DE;
 $indigo: #806BFF;
 $pink: #F6E8DE;
-$orange: #a05f2f;
-$green: #474e00;
+$orange: #b87646;
+$green: #707a00;
 $gray-600: #F3F3F3;
 $gray-800: #474747;
 
 $primary: #806BFF;
 $dark: #474747;
-$danger: #D08A58;
+$danger: #b87646;
+
+$carousel-control-color: #806BFF;
+$carousel-control-opacity: .9;
+$carousel-control-hover-opacity: 1;
+$carousel-indicator-active-bg: #806BFF;
 
 $input-placeholder-color: #909090;
 
@@ -22,6 +27,7 @@ $placeholder-opacity-min: .05;
 .logo-shadow {
     text-shadow: 2px 2px 2px #806BFF;
 }
+
 
 $navbar-brand-font-size: 2.1rem;
 $font-family-sans-serif: montserrat, sans-serif;
@@ -49,11 +55,11 @@ $btn-font-weight: 600;
 }
 
 .expired {
-    color: #D08A58;
+    color: #b87646;
 }
 
 .not-expired {
-    color: #838E00;
+    color: #707a00;
 }
 
 .card-img-size {
