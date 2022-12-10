@@ -32,7 +32,7 @@ isLoggedin();
 let numberOfInputs = 0;
 addInputBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  //console.log("You clicked me!");
+  console.log("You clicked me!");
   numberOfInputs += 1;
   const input = `
             <input id="img-input${numberOfInputs}" type="text" class="form-control bg-light border-0 box-shadow-pink img-input" placeholder="Image URL"><br>
@@ -81,13 +81,22 @@ function validateAndProcess(event) {
   event.preventDefault();
   const title = listingTitle.value.trim();
   const description = listingDescription.value.trim();
-  let media = [`${listingMainImg.value.trim()}`];
+  let media = [];
 
+  const allImgInputs = document.getElementsByClassName("img-input");
+  //console.log(allImgInputs);
+  for (let inputs of allImgInputs) {
+    media.push(inputs.value.trim());
+  }
+  console.log(numberOfInputs, media);
+
+  /*
   if (media[0] === "") {
     media = [
       "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
     ];
   }
+  */
 
   //console.log(media);
 
