@@ -9,6 +9,8 @@ const listingDate = document.getElementById("listing-date");
 const listingDescription = document.getElementById("listing-description");
 const listingMainImg = document.getElementById("listing-main-img");
 const listingSubmit = document.getElementById("listing-submit");
+const addInputBtn = document.getElementById("add-inputs");
+const imgInputsDiv = document.getElementById("img-inputs");
 
 const listingErrorMsg = document.getElementById("listing-error-msg");
 
@@ -26,6 +28,18 @@ function isLoggedin() {
 }
 
 isLoggedin();
+
+// Option to add more inputs and add images
+let numberOfInputs = 0;
+addInputBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("You clicked me!");
+  numberOfInputs += 1;
+  const input = `
+            <input id="img-input${numberOfInputs}" type="text" class="form-control bg-light border-0 box-shadow-pink img-input" placeholder="Image URL"><br>
+    `;
+  imgInputsDiv.innerHTML += input;
+});
 
 // Posts listing info to API
 async function listIt(url, data) {
@@ -68,18 +82,18 @@ function validateAndProcess(event) {
   event.preventDefault();
   const title = listingTitle.value.trim();
   const description = listingDescription.value.trim();
-  let media = [`${listingMainImg.value.trim()}`];
+  let media = [];
 
-  if (media[0] === "") {
-    media = [
-      "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
-    ];
+  const allImgInputs = document.getElementsByClassName("img-input");
+  //console.log(allImgInputs);
+  for (let inputs of allImgInputs) {
+    media.push(inputs.value.trim());
   }
+  console.log(numberOfInputs, media);
 
   //console.log(media);
 
   const bidEnds = listingDate.value.trim();
-  //console.log(bidEnds);
   const endsAt = `${bidEnds}:00.000Z`;
 
   let listingData = {
@@ -158,7 +172,7 @@ async function preview() {
   previewCont.innerHTML = `
                 <div class="card border-0 box-shadow-pink">
                     <h1 class="text-center mb-5 pt-4 knewave text-primary" style="position: absolute; left: -20px;">preview</h1>
-                    <img id="preview-img" src="${submittedMedia} " class="card-img-top card-img-size" alt="Product picture placeholder"/>
+                    <img id="preview-img" src="${submittedMedia}" onerror="this.src = 'https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true'" class="card-img-top card-img-size" alt="Product picture placeholder"/>
                     <div class="card-body p-4">
                         <h5 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${listingTitle.value}</a></h5>
                         <p class="pb-3 desc-text">${listingDescription.value}</p>

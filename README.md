@@ -30,7 +30,7 @@ Links:
 Report:
 
 I will be using bootstrap as CSS-framework for this project.
-In order to clone this code and make it work you should run `npm install bootstrap@latest` vscode terminal.
+In order to clone this code and make it work locally you should run `npm install bootstrap@latest` vscode terminal.
 
 For usertesting ive used the given userstories for the assignment and added a few to test functionality:
 
@@ -42,7 +42,7 @@ For usertesting ive used the given userstories for the assignment and added a fe
 - Brukeren som er logget inn kan se profilen sin, sine listings og listings de selv har bydd på.
 - Brukeren kan oppdatere profilbildet sitt.
 - Brukeren kan se sin totale credit-saldo.
-- Brukeren kan opprette og legge ut en ny listing med tittel, deadline, beskrivelse og bilde og få en preview av listingen før den legges ut.
+- Brukeren kan opprette og legge ut en ny listing med tittel, deadline, beskrivelse og et eller flere bilder og få en preview av listingen før den legges ut.
 - Brukeren kan oppdatere sin egen listing.
 - Brukeren kan slette sin egen listing.
 - Brukeren kan by på en annens listing.
