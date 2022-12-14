@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Product listed at highestbidder">
     <title>Product | highestbidder</title>
+    <link rel="icon" type="image/png" href="/images/highestbidder-favicon.png">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,7 +96,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content p-3 pt-1">
                     <div class="modal-header border-0">
-                        <h5 class="modal-title" id="exampleModalLongTitl"></h5>
+                        <h5 class="modal-title" id="exampleModalLongTitl">Edit listing</h5>
                         <button type="button" class="close btn p-1" data-bs-dismiss="modal" aria-label="Close">
                             <span class="display-6" aria-hidden="true">&times;</span>
                         </button>
@@ -105,10 +106,9 @@
                         <textarea id="update-title" class="form-control bg-light border-0 mb-3" placeholder="Title" rows="1"></textarea>
                         <textarea placeholder="Description" class="form-control bg-light border-0 mb-3" id="update-description"
                             cols="30" rows="3"></textarea>
-                        <textarea id="update-main-img" class="form-control bg-light border-0 mb-5"
-                            placeholder="Image URL" rows="3"></textarea>
+                        <div id="update-imgs-div">
+                        </div>
                         <button id="update-submit" type="submit" class="btn btn-primary text-white mx-auto text-center mb-4 col-7">Update listing</button>
-
                     </div>
                     <div class="modal-footer border-0">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

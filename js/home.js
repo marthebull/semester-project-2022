@@ -31,7 +31,7 @@ async function getAllListings(url) {
     //console.log(response);
 
     const listings = await response.json();
-    console.log(listings);
+    //console.log(listings);
     listingsCollection = listings;
     writeListings(listings, outElement);
   } catch (error) {
@@ -78,12 +78,17 @@ const writeListings = (list, outElement) => {
   let newDivs = "";
 
   for (let content of list) {
-    const productImg =
-      content.media.length !== 0
-        ? `${content.media[0]}`
-        : [
-            "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
-          ];
+    const imgTestPattern = /\.(jpeg|jpg|gif|png|svg|unsplash|image)$/;
+
+    let productImg = "";
+
+    if (content.media.length !== 0) {
+      productImg = content.media[0];
+    } else {
+      productImg = [
+        "https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true",
+      ];
+    }
 
     const profileImg =
       content.seller.avatar === "" || content.seller.avatar === null
@@ -128,7 +133,7 @@ const writeListings = (list, outElement) => {
     newDivs += `
             <div class="col pb-4">
                 <div class="card h-100 border-0 box-shadow-pink">
-                    <img src="${productImg}" class="card-img-top card-img-size" alt="Product">
+                    <img src="${productImg}" onerror="this.src = 'https://github.com/marthebull/semester-project-2022/blob/dev-js/images/product-placeholder-img.jpg?raw=true'" class="card-img-top card-img-size" alt="Product">
                     <div class="card-body p-4">
                         <h5 class="card-title">
                             <a href="product.html?id=${
@@ -144,7 +149,7 @@ const writeListings = (list, outElement) => {
                         }
                         </p>
                         <a href="#" class="d-flex mb-3 pt-2 text-black text-decoration-none">
-                            <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="">
+                            <img class="rounded-circle profile-img-thumbnail" src="${profileImg}" alt="" onerror="this.src = 'https://github.com/marthebull/semester-project-2022/blob/dev-js/images/placeholder-profile-img.jpg?raw=true'">
                             <div class="ms-2">
                                 <p class="mb-0">Listed by</p>
                                 <p class="mb-0"><strong>@${
