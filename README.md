@@ -4,6 +4,8 @@
 
 by Marthe Bull Pettersen
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/136014c1-ac0b-46d0-bde0-78a661fbf175/deploy-status)](https://app.netlify.com/sites/highestbidder/deploys) 
+
 Goal:
 To take the skills learned over the past three semesters and create an auction website.
 
