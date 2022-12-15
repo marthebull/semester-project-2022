@@ -30,7 +30,7 @@ Links:
 Report:
 
 I will be using bootstrap as CSS-framework for this project.
-In order to clone this code and make it work locally you should run `npm install bootstrap@latest` and then `scss --watch /scss/custom.scss:css/style.css` vscode terminal.
+In order to clone this code and make it work locally you should run `npm install bootstrap@latest` and then `sass --watch /scss/custom.scss:css/style.css` vscode terminal.
 
 For usertesting ive used the given userstories for the assignment and added a few to test functionality:
 
