@@ -33,7 +33,7 @@ Report:
 I will be using bootstrap as CSS-framework for this project.
 In order to clone this code and make it work locally you should run `npm install bootstrap@latest` and then `sass --watch scss/custom.scss:css/style.css` vscode terminal.
 
-For usertesting ive used the given userstories for the assignment and added a few to test functionality:
+For usertesting Ive used the given userstories for the assignment and added a few to test functionality:
 
 - Brukeren kan bla gjennom og se på produkter uten å være logget inn.
 - Brukeren kan søke på produkter eller sortere på “latest first” eller “ending soon”.
