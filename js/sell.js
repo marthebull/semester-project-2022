@@ -31,15 +31,39 @@ isLoggedin();
 
 // Option to add more inputs and add images
 let numberOfInputs = 0;
-addInputBtn.addEventListener("click", (e) => {
+addInputBtn.addEventListener("click", addInput);
+
+function remove() {
+  this.parentElement.remove();
+}
+
+function addInput(e) {
   e.preventDefault();
-  console.log("You clicked me!");
   numberOfInputs += 1;
-  const input = `
-            <input id="img-input${numberOfInputs}" type="text" class="form-control bg-light border-0 box-shadow-pink img-input" placeholder="Image URL"><br>
-    `;
-  imgInputsDiv.innerHTML += input;
-});
+
+  const newInput = document.createElement("input");
+  newInput.className =
+    "form-control" +
+    " bg-light border-0" +
+    " box-shadow-pink" +
+    " img-input" +
+    " box-shadow-pink";
+  newInput.id = `img-input${numberOfInputs}`;
+
+  const removeInput = document.createElement("a");
+  removeInput.className =
+    "remove-input" + " text-primary" + " rounded" + " box-shadow-pink";
+  removeInput.innerHTML = "&times";
+
+  removeInput.addEventListener("click", remove);
+
+  const inputFlex = document.createElement("div");
+  inputFlex.className = "flex";
+
+  imgInputsDiv.appendChild(inputFlex);
+  inputFlex.appendChild(newInput);
+  inputFlex.appendChild(removeInput);
+}
 
 // Posts listing info to API
 async function listIt(url, data) {
