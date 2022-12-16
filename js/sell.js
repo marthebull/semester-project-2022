@@ -49,6 +49,7 @@ function addInput(e) {
     " img-input" +
     " box-shadow-pink";
   newInput.id = `img-input${numberOfInputs}`;
+  newInput.placeholder = "Image url";
 
   const removeInput = document.createElement("a");
   removeInput.className =
