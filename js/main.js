@@ -47,7 +47,7 @@ async function getProfile(url) {
     const myCredits = profile.credits;
     const loggedIn = localStorage.getItem("accessToken");
     if (loggedIn) {
-      document.querySelector(".saldo").innerHTML = `
+      document.querySelector(".saldo").innerHTML += `
         <div class="credits bg-white box-shadow-pink">
             <p class="fw-semibold">Credits : <span> ${myCredits} </span> </p>
         </div>`;

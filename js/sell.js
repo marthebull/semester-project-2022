@@ -14,7 +14,7 @@ const imgInputsDiv = document.getElementById("img-inputs");
 
 const listingErrorMsg = document.getElementById("listing-error-msg");
 
-let previewCont = document.getElementById("preview-cont");
+const previewCont = document.getElementById("preview-cont");
 const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
 
