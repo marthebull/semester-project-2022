@@ -7,11 +7,15 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/136014c1-ac0b-46d0-bde0-78a661fbf175/deploy-status)](https://app.netlify.com/sites/highestbidder/deploys) 
 
+<img src="https://marthebull.no/wp-content/uploads/2023/06/highestbidder.png" alt="Image description" style="width:100px; height:100px;">
+
 🌐 [Live site at Netlify: https://highestbidder.netlify.app](https://highestbidder.netlify.app/)
 
 🎨  [Figma - all design files, style guides and prottypes ](https://www.figma.com/file/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?type=design&node-id=204-84&t=A6JJhVl57isURRqS-0)
 
 💻  [Figma protoype desktop](https://www.figma.com/proto/RFc5emi6a6jUG75sDU1LoM/Semester-project-2?type=design&node-id=15-677&scaling=min-zoom&page-id=1%3A4&starting-point-node-id=15%3A677)
+
+
 
 #### NOTE: For testing the live site you have to register with a @noroff.no or @stud.noroff.no email.
 <br />
